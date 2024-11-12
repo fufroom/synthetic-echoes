@@ -4,30 +4,19 @@ using UnityEngine;
 public class TalkingLights : MonoBehaviour
 {
     public float syllableInterval = 0.3f; // Time interval for each syllable
+    public int mouthPatternCount = 4; // Adjustable number of mouth patterns to use (up to 4)
     private MaterialToggle[] lights; // Array to hold 6 MaterialToggle components
     private Coroutine talkingRoutine;
 
     private readonly string sampleText = "Hello, how are you today?";
 
-    // Define two sequences for each mouth shape using light indices
-    private readonly int[][] mouthPatterns1 = new int[][]
+    // Define four mouth patterns for lights
+    private readonly int[][] mouthPatterns = new int[][]
     {
         new int[] { },              // Closed - no lights
         new int[] { 2, 3 },         // Small Open - middle two lights
         new int[] { 1, 2, 3, 4 },   // Medium Open - four lights in the middle
-        new int[] { 0, 1, 2, 3, 4, 5 }, // Wide Open - all lights on
-        new int[] { 1, 4 },         // Partially Open - two lights in wider position
-        new int[] { 0, 5 }          // Outer Lights - corners only
-    };
-
-    private readonly int[][] mouthPatterns2 = new int[][]
-    {
-        new int[] { },              // Closed - no lights
-        new int[] { 1, 4 },         // Small Open alternate - wider two lights
-        new int[] { 0, 5 },         // Medium Open alternate - outer lights
-        new int[] { 2, 3 },         // Wide Open alternate - middle two lights
-        new int[] { 0, 5 },         // Partially Open alternate - outer corners
-        new int[] { 1, 2, 3, 4 }    // Outer Lights alternate - middle four
+        new int[] { 0, 1, 2, 3, 4, 5 } // Wide Open - all lights on
     };
 
     void Start()
@@ -57,29 +46,28 @@ public class TalkingLights : MonoBehaviour
     {
         // Break the text into syllables
         string[] syllables = BreakTextIntoSyllables(text);
-        
-        int patternIndex = 0; // Start with the first pattern
 
         foreach (string syllable in syllables)
         {
-            // First flash of the mouth shape
-            int[] mouthShape1 = mouthPatterns1[patternIndex % mouthPatterns1.Length];
+            // Choose a random mouth pattern from the available set
+            int patternIndex1 = Random.Range(0, mouthPatternCount);
+            int patternIndex2 = Random.Range(0, mouthPatternCount);
+
+            // Apply the first mouth shape
+            int[] mouthShape1 = mouthPatterns[patternIndex1];
             ApplyMouthShape(mouthShape1);
             Debug.Log($"Syllable: {syllable}, Mouth Shape 1: [{string.Join(", ", mouthShape1)}]");
             yield return new WaitForSeconds(syllableInterval / 2); // Half of the syllable interval
 
-            // Second flash of the mouth shape
-            int[] mouthShape2 = mouthPatterns2[patternIndex % mouthPatterns2.Length];
+            // Apply the second mouth shape
+            int[] mouthShape2 = mouthPatterns[patternIndex2];
             ApplyMouthShape(mouthShape2);
             Debug.Log($"Syllable: {syllable}, Mouth Shape 2: [{string.Join(", ", mouthShape2)}]");
             yield return new WaitForSeconds(syllableInterval / 2); // Second half of the syllable interval
-            
+
             // Turn off all lights briefly between syllables
             ToggleAllLights(false);
             Debug.Log("Intermediate: All lights turned off after syllable.");
-
-            // Move to the next pattern, cycling back to the start if needed
-            patternIndex++;
         }
 
         // Ensure all lights are off after the text sequence completes, with a slight delay
