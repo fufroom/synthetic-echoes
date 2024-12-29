@@ -1,0 +1,17 @@
+tts_models_en_blizzard2013_capacitron-t2-c150_v2.wav
+
+tts_models_en_ek1_tacotron2.wav
+
+tts_models_en_ljspeech_glow-tts.wav
+
+tts_models_en_ljspeech_tacotron2-DDC_ph
+
+
+
+tts_models_en_multi-dataset_tortoise-v2.wav
+
+tts_models_en_sam_tacotron-DDC.wav
+
+
+
+sample_tts_models_en_ljspeech_tacotron2-DDC_ph_pitch-206.wav
