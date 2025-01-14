@@ -37,7 +37,11 @@ void RefreshView()
     // Display all story content available at this point
     while (inkStory.canContinue)
     {
-        storyText.text += inkStory.Continue().Trim() + "\n";
+
+        string nextStoryBit = inkStory.Continue().Trim() + "\n";
+        Debug.Log(nextStoryBit);
+        storyText.text = "";
+        storyText.text += nextStoryBit;
     }
 
     // Handle choices
