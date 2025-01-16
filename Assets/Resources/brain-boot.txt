@@ -1,0 +1,91 @@
+cortex_manager.o (12768K, MD5: 9f3b1ac2f6d4a3e894d1e5f8c9a6b7e3) STATUS: GOOD
+exec_planner.o (8724K, MD5: 2a1c9e2d4f8b7a3c5e9f4b6e3d2c1f9a6) STATUS: GOOD
+input_mapper.o (9386K, MD5: 7b3f5c1a9d4f8c6d2e1f9a4c3b9a2f6) STATUS: GOOD
+audio_visual_decoder.o (11193K, MD5: 1e4c9f6b3a5c2a9f3b8c6f7e2d1a5f4) STATUS: GOOD
+video_processor.o (10754K, MD5: 3c9b3e7d4f1a2c5f8b6e3a9f2d4b1f9) STATUS: GOOD
+motor_control.o (7623K, MD5: 6f8b6c2a1d3e4b9a5c9f7e2d1c3a4b9) STATUS: GOOD
+emotion_core.o (6417K, MD5: CHECKSUM FAILED, file mismatch)
+
+Guardian process - system resiliance check: scanning file integrity for emotion_io.o...
+
+STATUS:
+-rw-r--r--  1 root root  12768 Jan 23 15:41 emotion_io.o
+
+DETAILED FILE METADATA:
+File: emotion_core.o
+Size: 12768       Blocks: 32         IO Block: 4096  regular file
+Device: 802h/2050d   Inode: 123456    Links: 1
+Last Edited: 1995-01-23 15:42:00
+
+ERROR:
+Checksum verification failed. The file has been altered by root group user: <EB_NAMES>
+
+NOTES:
+- Guardian process is unable to restore the file due to missing backup SCSI disc (Backup Volume: /dev/scsi6).
+- Further attempts to reconcile the changes will require physical access to backup hardware.
+- This file is critical for emotional regulation within the synthetic brain. Anomalies may cause system-wide instability.
+
+Guardian process will continue monitoring for further changes....
+
+memory_allocation.o (7198K, MD5: 9e1f4c3a9b7d2f6a5c9b8e3d1a4c2f7)
+threat_monitoring.o (5894K, MD5: CHECKSUM FAILED, file mismatch)
+vision_hearing_switch.o (4829K, MD5: 6d1e3f6a4b7c2f9a5c8b9e7d2a3f4c1)
+level_detection.o (9467K, MD5: 7e3a1f9c5b6d4f7a2c1b8e4d2a3f5b9)
+signal_relay.o (6132K, MD5: 5c8b7a3f9e2d4b1a5f6e3c9f4d2a7b1)
+tamper_switch.o (8376K, MD5: CHECKSUM FAILED, file mismatch)
+
+Guardian process - system resilience check: scanning file integrity for tamper_switch.o...
+
+STATUS:
+-rw-r--r--  1 root root  8376 Jan 23 15:50 tamper_switch.o
+
+DETAILED FILE METADATA:
+File: tamper_switch.o
+Size: 8376        Blocks: 24         IO Block: 4096  regular file
+Device: 802h/2050d   Inode: 123789    Links: 1
+Last Edited: 1995-01-23 15:51:00
+
+ERROR:
+Checksum verification failed. The file has been altered by root group user: <EB_NAMES>
+
+NOTES:
+- Guardian process detected the absence of backup hardware for the SCSI disc containing tamper_switch.o (Backup Volume: /dev/scsi7).
+- File restoration is not possible without physical intervention and hardware replacement.
+- This file manages tamper detection systems critical to maintaining system integrity. Anomalies may lead to compromised system defenses.
+
+Guardian process will continue monitoring for further changes....
+
+data_router.o (10178K, MD5: 1f3b6e9c9a2d4f7b8e9a5c4d3b7e2f8c)
+system_monitor.o (9025K, MD5: CHECKSUM FAILED, file mismatch)
+
+Guardian process - system resilience check: scanning file integrity for system_monitor.o...
+
+STATUS:
+-rw-r--r--  1 root root  9025 Jan 23 16:05 system_monitor.o
+
+DETAILED FILE METADATA:
+File: system_monitor.o
+Size: 9025        Blocks: 28         IO Block: 4096  regular file
+Device: 802h/2050d   Inode: 124567    Links: 1
+Last Edited: 1995-01-23 16:06:00
+
+ERROR:
+Checksum verification failed. The file has been altered by root group user: <EB_NAMES>
+
+NOTES:
+- Guardian process detected missing backup media for system_monitor.o (Backup Volume: /dev/scsi8).
+- Restoration is not possible due to the absence of a verified backup.
+- This file is essential for monitoring and managing system-wide processes. Anomalies may cause cascading failures or compromised oversight of critical functions.
+
+Guardian process will continue monitoring for further changes....
+
+
+hormone_driver.o (7742K, MD5: 6e3a5f9c2b6d1f4a7c9e2b8f1d3a9f7)
+clock_sync.o (6547K, MD5: 4b4f3e9c7a6d2f1b8c5e3d9a1f7a2b6)
+power_state_manager.o (7421K, MD5: 7f9b3e1a5d2c6f7a9c4e3d8a2f1c7b6)
+io_peripheral_bus.o (9129K, MD5: 7c3e9f7a1b4d2f6a8c5e2b9d4a3f1e6)
+thermal_monitoring.o (10587K, MD5: 6e4b9f1a3c7d2f6a5c9e3b8d4a2f1b7)
+data_bridge.o (11734K, MD5: 7d9a5f3c4b7e2f1a9b6e3d8a2f4b1c9)
+io_core_bus.o (10936K, MD5: 9f3a7b6e4c9d1f5a8b2e9c3d4a1f7b9)
+mem_protector.o (8354K, MD5: 6e1f9c4a2b7d3f6a8c5e3b9d1a4f2b7)
+firewall.o (9695K, MD5: 3b3a9f6e2c4d1f7a8c5e3d9a4f1b7e6)

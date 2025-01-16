@@ -1,0 +1,521 @@
+>> Initializing NeuroChem Control-9001... [OK]
+>> Device ID: SCSI-1:TANKCTRL-2, Firmware v2.4.3 [OK]
+>> Loading Tank Profiles and Thermal Systems... [READY]
+>> System Online.
+
+Last Boot: 1995-01-23 14:42:00
+Last Calibration: 1995-01-01 15:30:00
+
+==========================================================================
+Excitatory Neurotransmitter Collection (dev/excitatory-nt):
+  [dev/ex-tank01] Name: Glutamate
+                   Volume: 5.0 mL
+                   Temperature: 6.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.50 mL/min (Pump Mode)
+                   Last Refill: 1994-04-15
+                   Supplier: Caymer-USA
+
+  [dev/ex-tank02] Name: Aspartate
+                   Volume: 2.0 mL
+                   Temperature: 5.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.20 mL/min (Pump Mode)
+                   Last Refill: 1993-12-10
+                   Supplier: Thorno-USA
+---
+
+Inhibitory Neurotransmitter Collection (dev/inhibitory-nt):
+  [dev/in-tank01] Name: Gamma-Aminobutyric Acid (GABA)
+                   Volume: 3.0 mL
+                   Temperature: 4.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.30 mL/min (Pump Mode)
+                   Last Refill: 1994-07-22
+                   Supplier: BioB-USA
+
+  [dev/in-tank02] Name: Glycine
+                   Volume: 2.0 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.20 mL/min (Drip Mode)
+                   Last Refill: 1993-06-09
+                   Supplier: INGEN-CRI
+
+---
+
+Secondary Neurotransmitter Collection (dev/secondary-nt):
+  [dev/sn-tank01] Name: Dopamine
+                   Volume: 0.1 mL
+                   Temperature: 6.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.05 mL/min (Pump Mode)
+                   Last Refill: 1994-03-10
+                   Supplier: Alpha-USA
+
+  [dev/sn-tank02] Name: Serotonin
+                   Volume: 0.05 mL
+                   Temperature: 5.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Drip Mode)
+                   Last Refill: 1994-07-21
+                   Supplier: Caymer-USA
+
+  [dev/sn-tank03] Name: Norepinephrine
+                   Volume: 0.05 mL
+                   Temperature: 6.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Drip Mode)
+                   Last Refill: 1994-05-05
+                   Supplier: Thorno-USA
+
+  [dev/sn-tank04] Name: Epinephrine
+                   Volume: 0.02 mL
+                   Temperature: 7.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1993-12-15
+                   Supplier: BioB-USA
+
+  [dev/sn-tank05] Name: Acetylcholine
+                   Volume: 0.5 mL
+                   Temperature: 5.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.10 mL/min (Pump Mode)
+                   Last Refill: 1994-08-03
+                   Supplier: Morcki-DEU
+
+---
+
+Secondary Neurotransmitter Collection (dev/secondary-neurotransmitters):
+  [dev/sn-tank01] Name: Dopamine
+                   Volume: 0.1 mL
+                   Temperature: 6.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.05 mL/min (Pump Mode)
+                   Last Refill: 1994-03-10
+                   Supplier: Alpha-USA
+
+  [dev/sn-tank02] Name: Serotonin
+                   Volume: 0.05 mL
+                   Temperature: 5.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Drip Mode)
+                   Last Refill: 1994-07-21
+                   Supplier: Caymer-USA
+
+  [dev/sn-tank03] Name: Norepinephrine
+                   Volume: 0.05 mL
+                   Temperature: 6.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Drip Mode)
+                   Last Refill: 1994-05-05
+                   Supplier: Thorno-USA
+
+  [dev/sn-tank04] Name: Epinephrine
+                   Volume: 0.02 mL
+                   Temperature: 7.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1993-12-15
+                   Supplier: BioB-USA
+
+  [dev/sn-tank05] Name: Acetylcholine
+                   Volume: 0.5 mL
+                   Temperature: 5.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.10 mL/min (Pump Mode)
+                   Last Refill: 1994-08-03
+                   Supplier: Morcki-DEU
+
+  [dev/sn-tank06] Name: Histamine
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-10-12
+                   Supplier: Alcam-UK
+
+---
+
+Neuromodulator Collection (dev/neuromodulators):
+  [dev/nm-tank01] Name: Endocannabinoids
+                   Volume: 0.005 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.005 mL/min (Drip Mode)
+                   Last Refill: 1994-04-12
+                   Supplier: Caymer-USA
+
+  [dev/nm-tank02] Name: Substance P
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-09-30
+                   Supplier: Alpha-USA
+
+  [dev/nm-tank03] Name: Adenosine
+                   Volume: 0.05 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Pump Mode)
+                   Last Refill: 1993-11-18
+                   Supplier: Thorno-USA
+
+  [dev/nm-tank04] Name: Neuropeptide Y
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-07-06
+                   Supplier: Bio-USA
+
+  [dev/nm-tank05] Name: Oxytocin
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-12-08
+                   Supplier: Alcam-UK
+
+  [dev/nm-tank06] Name: Vasopressin
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-05-15
+                   Supplier: Morcki-DEU
+
+---
+
+Hormone Collection (dev/hormones):
+  [dev/hr-tank01] Name: Cortisol
+                   Volume: 0.05 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Pump Mode)
+                   Last Refill: 1994-05-20
+                   Supplier: Alpha-USA
+
+  [dev/hr-tank02] Name: Melatonin
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1993-12-10
+                   Supplier: Caymer-USA
+
+  [dev/hr-tank03] Name: Estrogen
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-03-15
+                   Supplier: Thorno-USA
+
+  [dev/hr-tank04] Name: Testosterone
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-06-05
+                   Supplier: Bio-Techne
+                   Location: Minneapolis, Minnesota, USA
+
+  [dev/hr-tank05] Name: Progesterone
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-10-22
+                   Supplier: Alcam
+                   Location: Cambridge, United Kingdom
+
+  [dev/hr-tank06] Name: Insulin
+                   Volume: 0.02 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Pump Mode)
+                   Last Refill: 1994-07-08
+                   Supplier: Morcki
+                   Location: Darmstadt, Germany
+
+  [dev/hr-tank07] Name: UNUSED
+                   Volume: null
+                   Temperature: null
+                   Purge Status: OFF
+                   Flow Rate: null
+                   Last Refill: null
+                   Supplier: null
+                   Location: null
+
+  [dev/hr-tank08] Name: Thyroid Hormones (T3, T4)
+                   Volume: 0.01 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-08-18
+                   Supplier: Caymer-USA
+
+---
+
+Ion Collection (dev/ions):
+  [dev/io-tank01] Name: Sodium (Na⁺)
+                   Volume: 150.0 mL
+                   Temperature: 25.0°C
+                   Purge Status: OFF
+                   Flow Rate: 10.0 mL/min (Pump Mode)
+                   Last Refill: 1994-06-18
+                   Supplier: Alpha-USA
+
+  [dev/io-tank02] Name: Potassium (K⁺)
+                   Volume: 100.0 mL
+                   Temperature: 25.0°C
+                   Purge Status: OFF
+                   Flow Rate: 7.5 mL/min (Pump Mode)
+                   Last Refill: 1994-09-12
+                   Supplier: Thorno-USA
+
+  [dev/io-tank03] Name: Calcium (Ca²⁺)
+                   Volume: 2.0 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.5 mL/min (Drip Mode)
+                   Last Refill: 1993-12-03
+                   Supplier: Morcki-DEU
+
+  [dev/io-tank04] Name: Chloride (Cl⁻)
+                   Volume: 150.0 mL
+                   Temperature: 25.0°C
+                   Purge Status: OFF
+                   Flow Rate: 10.0 mL/min (Pump Mode)
+                   Last Refill: 1994-08-25
+                   Supplier: Caymer-USA
+
+  [dev/io-tank05] Name: Magnesium (Mg²⁺)
+                   Volume: 5.0 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 1.0 mL/min (Drip Mode)
+                   Last Refill: 1994-11-14
+                   Supplier: BioB-USA
+
+---
+
+Enzyme Collection (dev/enzymes):
+  [dev/en-tank01] Name: Monoamine Oxidase (MAO)
+                   Volume: 0.01 mL
+                   Temperature: 4.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-10-15
+                   Supplier: Alpha-USA
+
+  [dev/en-tank02] Name: Acetylcholinesterase
+                   Volume: 0.05 mL
+                   Temperature: 5.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Pump Mode)
+                   Last Refill: 1994-07-21
+                   Supplier: Morcki-DEU
+
+  [dev/en-tank03] Name: Tyrosine Hydroxylase
+                   Volume: 0.01 mL
+                   Temperature: 4.2°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1993-11-05
+                   Supplier: Caymer-USA
+
+  [dev/en-tank04] Name: Tryptophan Hydroxylase
+                   Volume: 0.01 mL
+                   Temperature: 4.3°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-09-10
+                   Supplier: Thorno-USA
+
+  [dev/en-tank05] Name: Glutamic Acid Decarboxylase (GAD)
+                   Volume: 0.05 mL
+                   Temperature: 4.1°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Pump Mode)
+                   Last Refill: 1994-02-17
+                   Supplier: Alcam-UK
+
+  [dev/en-tank06] Name: Adenylyl Cyclase
+                   Volume: 0.01 mL
+                   Temperature: 4.4°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Last Refill: 1994-12-12
+                   Supplier: BioB-USA
+
+---
+
+Lipid Collection (dev/lipids):
+  [dev/lp-tank01] Name: Phospholipids
+                   Volume: 250.0 mL
+                   Temperature: 3.5°C
+                   Purge Status: OFF
+                   Flow Rate: 5.0 mL/min (Pump Mode)
+                   Supplier: Avanti-USA
+
+  [dev/lp-tank02] Name: Cholesterol
+                   Volume: 50.0 mL
+                   Temperature: 4.2°C
+                   Purge Status: OFF
+                   Flow Rate: 1.0 mL/min (Pump Mode)
+                   Supplier: Alpha-USA
+
+  [dev/lp-tank03] Name: Sphingolipids
+                   Volume: 100.0 mL
+                   Temperature: 3.8°C
+                   Purge Status: OFF
+                   Flow Rate: 2.0 mL/min (Pump Mode)
+                   Supplier: Caymer-USA
+            
+---
+
+Metabolite Collection (dev/metabolites):
+  [dev/mt-tank01] Name: Glucose (C₆H₁₂O₆)
+                   Volume: 10.0 mL
+                   Temperature: 24.5°C
+                   Purge Status: OFF
+                   Flow Rate: 1.0 mL/min (Pump Mode)
+                   Supplier: Alpha-USA
+
+  [dev/mt-tank02] Name: Lactate (C₃H₆O₃)
+                   Volume: 5.0 mL
+                   Temperature: 23.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.5 mL/min (Pump Mode)
+                   Supplier: Caymer-USA
+
+  [dev/mt-tank03] Name: Pyruvate (C₃H₄O₃)
+                   Volume: 1.0 mL
+                   Temperature: 22.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.1 mL/min (Drip Mode)
+                   Supplier: Thorno-USA
+
+  [dev/mt-tank04] Name: ATP (Adenosine Triphosphate, C₁₀H₁₆N₅O₁₃P₃)
+                   Volume: 1.0 mL
+                   Temperature: 4.2°C
+                   Purge Status: OFF
+                   Flow Rate: 0.1 mL/min (Drip Mode)
+                   Supplier: Alcam-UK
+
+  [dev/mt-tank05] Name: ADP (Adenosine Diphosphate, C₁₀H₁₅N₅O₁₀P₂)
+                   Volume: 1.0 mL
+                   Temperature: 4.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.1 mL/min (Drip Mode)
+                   Supplier: BioB-USA
+
+  [dev/mt-tank06] Name: Creatine and Phosphocreatine
+                   Volume: 5.0 mL
+                   Temperature: 23.8°C
+                   Purge Status: OFF
+                   Flow Rate: 0.5 mL/min (Pump Mode)
+                   Supplier: Morcki-DEU
+
+---
+
+Protein and Peptide Collection (dev/proteins-peptides):
+  [dev/pp-tank01] Name: Synthesized BDNF
+                   Volume: 0.01 mL
+                   Temperature: 5.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.02 mL/min (Drip Mode)
+                   Supplier: Thorno-USA
+
+  [dev/pp-tank02] Name: Synapsins
+                   Volume: 0.05 mL
+                   Temperature: 6.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.05 mL/min (Pump Mode)
+                   Supplier: Caymer-USA
+
+  [dev/pp-tank03] Name: Amyloid-Beta
+                   Volume: 0.01 mL
+                   Temperature: 4.5°C
+                   Purge Status: ON
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Supplier: Alcam-UK
+
+  [dev/pp-tank04] Name: Tau Protein
+                   Volume: 0.01 mL
+                   Temperature: 4.2°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Supplier: Alpha-USA
+
+  [dev/pp-tank05] Name: Cytokine
+                   Volume: 0.05 mL
+                   Temperature: 5.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.04 mL/min (Pump Mode)
+                   Supplier: BioB-USA
+
+---
+
+Signaling Molecule Collection (dev/signaling-molecules):
+  [dev/sm-tank01] Name: Nitric Oxide (NO)
+                   Volume: 0.001 mL
+                   Temperature: 18.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Supplier: Caymer-USA
+
+  [dev/sm-tank02] Name: Carbon Monoxide (CO)
+                   Volume: 0.001 mL
+                   Temperature: 19.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.01 mL/min (Drip Mode)
+                   Supplier: Alpha-USA
+
+---
+
+Secondary Compound Collection (dev/secondary-compounds):
+  [dev/sc-tank01] Name: Vitamin C (Ascorbic Acid, C₆H₈O₆)
+                   Volume: 1.0 mL
+                   Temperature: 20.5°C
+                   Purge Status: OFF
+                   Flow Rate: 0.2 mL/min (Drip Mode)
+                   Supplier: Alpha-USA
+
+  [dev/sc-tank02] Name: Cellular Antioxidant (Glutathione, C₁₀H₁₇N₃O₆S)
+                   Volume: 1.0 mL
+                   Temperature: 21.7°C
+                   Purge Status: OFF
+                   Flow Rate: 0.5 mL/min (Pump Mode)
+                   Supplier: Caymer-USA
+
+  [dev/sc-tank03] Name: Neural Precursor (Tyrosine, C₉H₁₁NO₃)
+                   Volume: 2.5 mL
+                   Temperature: 23.5°C
+                   Purge Status: ON
+                   Flow Rate: 1.0 mL/min (Pump Mode)
+                   Supplier: Thorno-USA
+
+  [dev/sc-tank04] Name: Serotonin Precursor (Tryptophan, C₁₁H₁₂N₂O₂)
+                   Volume: 2.5 mL
+                   Temperature: 22.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.3 mL/min (Drip Mode)
+                   Supplier: BioB-USA
+
+  [dev/sc-tank05] Name: Metabolite Regulator (Uric Acid, C₅H₄N₄O₃)
+                   Volume: 1.0 mL
+                   Temperature: 21.0°C
+                   Purge Status: OFF
+                   Flow Rate: 0.0 mL/min (Idle)
+                   Supplier: Morcki-DEU
+
+
+==========================================================================
+
+System Alerts:
+  - [dev/mt-tank-03, dev/mt-tank-04, dev/mt-tank-05] Low volumes. Refill soon.
