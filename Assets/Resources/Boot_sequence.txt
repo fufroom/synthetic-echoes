@@ -16,15 +16,25 @@ EMPATHIX Boot Sequence - RadialSpark II Workstation
    [OK] SCSI Controller 0: StarForge Helix 4.3GB (Drive 3)
    [OK] SCSI Controller 0: StarForge Helix 4.3GB (Drive 4)
    [OK] SCSI Controller 0: StarForge Helix 4.3GB (Drive 5)
-   [ERROR] SCSI Controller 0: Drive 6 not detected (expected StarForge Helix 4.3GB)
+   [ERROR] SCSI Controller 0: Drive 6 not detected
+   (expected StarForge Helix 4.3GB)
 
 >> Verifying connected devices...
    [OK] GPU: EGI EtherTraceSP Graphics Processor
+
    [OK] Audio Card: EGI HarmonicEdge Stereo
-   [OK] Display: SonicVid Liquid Crystal XGA (Device ID: DISP-1-LCD9200)
-   [OK] IR Optical Sensor: Ecliptica IR CCD (Device ID: IRCCD-1)
-   [OK] Biometric Peripheral: Empathix Palm Scanner (Device ID: PALMSCAN-1)
-   [OK] NeuroChem Control-9001 (Device ID: SCSI-1:TANKCTRL-2)
+
+   [OK] Display: SonicVid Liquid Crystal XGA 
+   (Device ID: DISP-1-LCD9200)
+
+   [OK] IR Optical Sensor: Ecliptica IR CCD 
+   (Device ID: IRCCD-1)
+
+   [OK] Biometric Peripheral: Empathix Palm Scanner 
+   (Device ID: PALMSCAN-1)
+
+   [OK] NeuroChem Control-9001 
+   (Device ID: SCSI-1:TANKCTRL-2)
 
 >> Running hardware tests...
    [OK] Memory test: Passed
@@ -40,4 +50,4 @@ EMPATHIX Boot Sequence - RadialSpark II Workstation
    Initializing system services... [OK]
    Checking peripheral availability... [OK]
 
->> System boot complete. Welcome to EMPATHIX 5.3
+>> System boot complete. Welcome to EMPATHIX 5.3...

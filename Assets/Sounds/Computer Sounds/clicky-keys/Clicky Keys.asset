@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9010922dc715ea285bb79e1c0ef0a26c, type: 3}
+  m_Name: Clicky Keys
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: bfc371cdf21fd4be580823a3cda95e92, type: 3}
+  - {fileID: 8300000, guid: 34ad84872baf242a6b167af54ae86f74, type: 3}
+  - {fileID: 8300000, guid: 00a270b4879fe4ce39bbf1131b8efccd, type: 3}
+  playMode: 0
+  maximumPitch: 0.9
+  minimumPitch: 1.1

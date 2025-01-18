@@ -15,7 +15,7 @@ public class LerpOnStart : MonoBehaviour
 
     void Start()
     {
-        transform.position = startPosition;
+        transform.localPosition = startPosition;
     }
 
     public void StartLerp()
@@ -31,7 +31,7 @@ public class LerpOnStart : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration);
-            transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            transform.localPosition = Vector3.Lerp(startPosition, targetPosition, t);
 
             if (t >= 1.0f)
             {

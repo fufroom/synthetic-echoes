@@ -9,7 +9,7 @@ public class ReplaceDateTimeText : MonoBehaviour
     {
         if (textMeshPro != null)
         {
-            string currentDateTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            string currentDateTime = System.DateTime.Now.ToString("HH:mm");
             textMeshPro.text = textMeshPro.text.Replace("<DATE_TIME>", currentDateTime);
         }
         else
