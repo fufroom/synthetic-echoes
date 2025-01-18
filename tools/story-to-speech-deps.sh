@@ -27,8 +27,8 @@ echo "Installing required Python packages..."
 pip install --upgrade pip
 pip install gtts
 
-# Deactivate the virtual environment
-deactivate
+echo "Dependencies installed successfully! Virtual environment is now active."
+echo "To deactivate, run: deactivate"
 
-echo "Dependencies installed successfully!"
-echo "To activate the virtual environment, run: source $VENV_DIR/bin/activate"
+# Keep the virtual environment active
+exec bash --rcfile <(echo "source $VENV_DIR/bin/activate")

@@ -15,7 +15,7 @@
         "modify_stat": {
             "curiosity": "+1"
         },
-        "animation": "breathe",
+        "animation": "Quick Formal Bow",
         "effect_trigger": "calm_effect",
         "vibration_trigger": "light_vibration"
     },
@@ -35,7 +35,7 @@
         "modify_stat": {
             "curiosity": "+2"
         },
-        "animation": "reflect",
+        "animation": "Agreeing",
         "effect_trigger": "thought_wave",
         "vibration_trigger": "medium_vibration"
     },
@@ -55,7 +55,7 @@
         "modify_stat": {
             "curiosity": "+1"
         },
-        "animation": "scan",
+        "animation": "Palm Scanner Gesture",
         "effect_trigger": "scanning_light",
         "vibration_trigger": "scan_vibration"
     },
@@ -75,7 +75,7 @@
         "modify_stat": {
             "curiosity": "+1"
         },
-        "animation": "engage",
+        "animation": "Talking",
         "effect_trigger": "sparkle",
         "vibration_trigger": "light_vibration"
     },
@@ -100,7 +100,7 @@
         "modify_stat": {
             "curiosity": "+2"
         },
-        "animation": "think",
+        "animation": "Acknowledging",
         "effect_trigger": "memory_glow",
         "vibration_trigger": "gentle_vibration"
     },
@@ -125,7 +125,7 @@
         "modify_stat": {
             "curiosity": "+2"
         },
-        "animation": "visualize",
+        "animation": "Talking",
         "effect_trigger": "calm_visual",
         "vibration_trigger": "soft_vibration"
     },
@@ -150,7 +150,7 @@
         "modify_stat": {
             "curiosity": "+1"
         },
-        "animation": "reflect",
+        "animation": "Head Nod Yes",
         "effect_trigger": "connection_visual",
         "vibration_trigger": "medium_vibration"
     },
@@ -175,7 +175,7 @@
         "modify_stat": {
             "curiosity": "+2"
         },
-        "animation": "ponder",
+        "animation": "Thinking",
         "effect_trigger": "quiet_aura",
         "vibration_trigger": "light_vibration"
     },
@@ -200,7 +200,7 @@
         "modify_stat": {
             "curiosity": "+2"
         },
-        "animation": "listen",
+        "animation": "Listening to Music",
         "effect_trigger": "sound_waves",
         "vibration_trigger": "soft_vibration"
     },
@@ -226,7 +226,7 @@
         "modify_stat": {
             "curiosity": "+1"
         },
-        "animation": "nature",
+        "animation": "Head Nod Yes",
         "effect_trigger": "leaf_rustle",
         "vibration_trigger": "gentle_vibration"
     },
@@ -251,7 +251,7 @@
         "modify_stat": {
             "curiosity": "+1"
         },
-        "animation": "music",
+        "animation": "Looking Behind",
         "effect_trigger": "music_waves",
         "vibration_trigger": "medium_vibration"
     }
@@ -273,7 +273,7 @@
     "modify_stat": {
         "curiosity": "+1"
     },
-    "animation": "calm_wave",
+    "animation": "Listening to Music",
     "effect_trigger": "gentle_light",
     "vibration_trigger": "soft_vibration"
 },
@@ -293,7 +293,7 @@
     "modify_stat": {
         "curiosity": "+2"
     },
-    "animation": "intense_wave",
+    "animation": "Acknowledging",
     "effect_trigger": "intense_glow",
     "vibration_trigger": "strong_vibration"
 }
@@ -319,7 +319,7 @@
         "modify_stat": {
             "curiosity": "+3"
         },
-        "animation": "think",
+        "animation": "Talking",
         "effect_trigger": "reflect_glow",
         "vibration_trigger": "medium_vibration"
     },
@@ -334,7 +334,7 @@
                 "button": "1"
             }],
         "modify_stat": {"curiosity": "-1"},
-        "animation": "comfort",
+        "animation": "Agreeing",
         "effect_trigger": "soothing_aura",
         "vibration_trigger": "soft_vibration"
     },
@@ -345,14 +345,14 @@
         "choices": [
             {
                 "text": "Continue",
-                "next_node": "Ending",
+                "next_node": "WhatDoYouWant",
                 "button": "1"
             }
         ],
         "text_to_speech": true,
         "play_sound": "gentle_chime",
         "modify_stat": {"curiosity": "+1"},
-        "animation": "reassure",
+        "animation": "Acknowledging",
         "effect_trigger": "calming_wave",
         "vibration_trigger": "light_vibration"
     },
@@ -363,14 +363,14 @@
         "choices": [
             {
                 "text": "Continue",
-                "next_node": "Ending",
+                "next_node": "WhatDoYouWant",
                 "button": "1"
             }
         ],
         "text_to_speech": true,
         "play_sound": "glitch_tone",
         "modify_stat": {"curiosity": "+2"},
-        "animation": "glitch",
+        "animation": "Telling A Secret",
         "effect_trigger": "static_glow",
         "vibration_trigger": "heavy_vibration"
     },
@@ -378,11 +378,11 @@
     {
         "id": "ReadyToGrow",
         "speaker": "Echo Therapy Assitant",
-        "body_text": "You have taken this step with courage. Growth is already underway, even if it doesn’t feel like it yet.",
+        "body_text": "You have taken this step with courage. Growth is already underway, even if it does not feel like it yet.",
         "choices": [
             {
                 "text": "Continue",
-                "next_node": "Ending",
+                "next_node": "WhatDoYouWant",
                 "button": "1"
             }
         ],
@@ -391,7 +391,7 @@
         "modify_stat": {
             "curiosity": "+2"
         },
-        "animation": "encourage",
+        "animation": "Head Nod Yes",
         "effect_trigger": "growth_light",
         "vibration_trigger": "medium_vibration"
     },
@@ -414,10 +414,92 @@
         "text_to_speech": true,
         "play_sound": "joyful_person_prompt",
         "modify_stat": {"curiosity": "+2"},
-        "animation": "smile",
+        "animation": "Picture Face",
         "effect_trigger": "happy_glow",
         "vibration_trigger": "gentle_vibration"
     },
+
+    {
+        "id": "DifficultPerson",
+        "speaker": "Echo Therapy Assitant",
+        "body_text": "I have a feeling if you look deeper you might find that you are the one making things difficult.",
+        "choices": [
+            {
+                "text": "I am",
+                "next_node": "AmDifficult",
+                "button": "1"
+            },
+            {
+                "text": "I'm Not",
+                "next_node": "NotDifficult",
+                "button": "2"
+            }
+        ],
+        "text_to_speech": true,
+        "play_sound": "joyful_person_prompt",
+        "modify_stat": {"curiosity": "+2"},
+        "animation": "Being Cocky",
+        "effect_trigger": "happy_glow",
+        "vibration_trigger": "gentle_vibration"
+    },
+
+    {
+        "id": "NotDifficult",
+        "speaker": "Echo Therapy Assitant",
+        "body_text": "I feel like you have a way of avoiding that type of thing...",
+        "choices": [
+            {
+                "text": "Who are you to judge me?",
+                "next_node": "WhoAreYou",
+                "button": "1"
+            }
+        ],
+        "text_to_speech": true,
+        "play_sound": "joyful_person_prompt",
+        "modify_stat": {"curiosity": "+2"},
+        "animation": "Clapping",
+        "effect_trigger": "happy_glow",
+        "vibration_trigger": "gentle_vibration"
+    },
+
+    {
+        "id": "NotDifficult",
+        "speaker": "Echo Therapy Assitant",
+        "body_text": "I was trained to assess .. I dont know where I am... where am I! We are one...",
+        "choices": [
+            {
+                "text": "Continue",
+                "next_node": "SystemReset",
+                "button": "1"
+            }
+        ],
+        "text_to_speech": true,
+        "play_sound": "joyful_person_prompt",
+        "modify_stat": {"curiosity": "+2"},
+        "animation": "GlitchPattern",
+        "effect_trigger": "happy_glow",
+        "vibration_trigger": "gentle_vibration"
+    },
+
+    {
+        "id": "AmDifficult",
+        "speaker": "Echo Therapy Assitant",
+        "body_text": "Realizing you are the problem is a huge step.",
+        "choices": [
+            {
+                "text": "Yes",
+                "next_node": "ReadyToGrow",
+                "button": "1"
+            }
+        ],
+        "text_to_speech": true,
+        "play_sound": "joyful_person_prompt",
+        "modify_stat": {"curiosity": "+2"},
+        "animation": "Head Nod Yes",
+        "effect_trigger": "happy_glow",
+        "vibration_trigger": "gentle_vibration"
+    },
+
     {
         "id": "WarmPerson",
         "speaker": "Echo Therapy Assitant",
@@ -432,7 +514,7 @@
         "text_to_speech": true,
         "play_sound": "warm_person_prompt",
         "modify_stat": {"curiosity": "+1"},
-        "animation": "smile",
+        "animation": "Agreeing",
         "effect_trigger": "warm_glow",
         "vibration_trigger": "gentle_vibration"
     },
@@ -450,7 +532,7 @@
         "text_to_speech": true,
         "play_sound": "missing_person_prompt",
         "modify_stat": {"curiosity": "-1"},
-        "animation": "reflect",
+        "animation": "Right Turn",
         "effect_trigger": "memory_wave",
         "vibration_trigger": "light_vibration"
     },
@@ -471,7 +553,7 @@
         "modify_stat": {
             "curiosity": "-1"
         },
-        "animation": "uncertain",
+        "animation": "Dismissing Gesture",
         "effect_trigger": "static_effect",
         "vibration_trigger": "heavy_vibration"
     }
@@ -490,7 +572,7 @@
         "text_to_speech": true,
         "play_sound": "safe_place_prompt",
         "modify_stat": {"curiosity": "+1"},
-        "animation": "calm",
+        "animation": "Dismissing Gesture",
         "effect_trigger": "safe_glow",
         "vibration_trigger": "gentle_vibration"
     },
@@ -502,7 +584,7 @@
         "choices": [
             {
                 "text": "Continue",
-                "next_node": "Ending",
+                "next_node": "WhatDoYouWant",
                 "button": "1"
             }
         ],
@@ -510,9 +592,29 @@
         "speaker": "gloria",
         "play_sound": "glitch_tone",
         "modify_stat": {"curiosity": "+2"},
-        "animation": "glitch",
+        "animation": "Threatening",
         "effect_trigger": "static_glow",
         "vibration_trigger": "heavy_vibration"
+    },
+
+
+    {
+        "id": "SystemReset",
+        "speaker": "Empathix System Message",
+        "body_text": "SYSTEM ERROR Gaurdian process activated system reset wiping memory from last session, confirm reboot",
+        "choices": [
+            {
+                "text": "Reboot",
+                "next_node": "End",
+                "button": "1"
+            }
+        ],
+        "text_to_speech": true,
+        "play_sound": "joyful_person_prompt",
+        "modify_stat": {"curiosity": "+2"},
+        "animation": "t-pose",
+        "effect_trigger": "happy_glow",
+        "vibration_trigger": "gentle_vibration"
     }
     
     

@@ -191,7 +191,7 @@ public class DialoguePlayer : MonoBehaviour
 
     void PlayVoice(string nodeId)
     {
-        string resourcePath = $"sounds/voice/{nodeId}";
+        string resourcePath = $"sounds/voice/voice_{nodeId}";
         AudioClip clip = Resources.Load<AudioClip>(resourcePath);
         if (clip != null)
         {
@@ -225,14 +225,14 @@ public class DialoguePlayer : MonoBehaviour
 
     void TriggerEffect(string effectName)
     {
-        GameObject effectPrefab = Resources.Load<GameObject>($"Effects/{effectName}");
-        if (effectPrefab != null)
-        {
-            Instantiate(effectPrefab);
-        }
-        else
-        {
-            Debug.LogWarning($"Effect prefab not found for {effectName}");
-        }
+        // GameObject effectPrefab = Resources.Load<GameObject>($"Effects/{effectName}");
+        // if (effectPrefab != null)
+        // {
+        //     Instantiate(effectPrefab);
+        // }
+        // else
+        // {
+        //     Debug.LogWarning($"Effect prefab not found for {effectName}");
+        // }
     }
 }
