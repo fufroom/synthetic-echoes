@@ -479,6 +479,11 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3d19a02ee2202290c913776cce6a4999, type: 3}
     playInLeftChannel: 1
     playInRightChannel: 0
+  - name: simple_ui_confim
+    clips:
+    - {fileID: 8300000, guid: 056253e31f285e14bacfc5fff942a19c, type: 3}
+    playInLeftChannel: 1
+    playInRightChannel: 0
   audioMixerGroup: {fileID: 24300002, guid: 33b42c3da18e44bf2b1c36f35c080861, type: 2}
 --- !u!4 &267864389
 Transform:
@@ -1041,8 +1046,9 @@ GameObject:
   - component: {fileID: 491606392}
   - component: {fileID: 491606391}
   - component: {fileID: 491606393}
+  - component: {fileID: 491606394}
   m_Layer: 0
-  m_Name: InkPlayer
+  m_Name: DialogueManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1055,7 +1061,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491606390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69ef70708e64ebef88868cf162e2a471, type: 3}
   m_Name: 
@@ -1176,6 +1182,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &491606394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491606390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0155f5804f71f069e9f9029fc16fc5e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyText: {fileID: 2845602048890834531}
+  speakerText: {fileID: 7614278632890421077}
+  choiceContainer: {fileID: 7125370659946697906}
+  choiceButtonPrefab: {fileID: 4532334410549164309, guid: 593c68b98aef690fa9aeadc451b97dc2, type: 3}
+  audioSource: {fileID: 491606393}
+  linkedAnimator: {fileID: 254114414}
 --- !u!1 &545462936
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,9 +2,10 @@ import json
 import os
 import re
 import hashlib
+import subprocess
 
 # Define constants
-INPUT_JSON_FILE = "../Assets/Resources/story.json"
+INPUT_JSON_FILE = "../Assets/Resources/dialogue.json"
 OUTPUT_DIRECTORY = "../Assets/Resources/sounds/voice/"
 SEED = 12345  # Default seed for deterministic random number generation
 
@@ -23,50 +24,45 @@ def seeded_random(text, seed=12345):
     random_number = (seed_value * 1103515245 + 12345) & 0x7FFFFFFF  # LCG algorithm
     return random_number % 100000000  # Limit to 8 digits
 
-def extract_spoken_lines(data, spoken_lines=None):
-    """Recursively extract spoken lines (marked with '^') from the JSON structure."""
-    if spoken_lines is None:
-        spoken_lines = []
+def generate_voice(line, node_id, speaker):
+    """Generate a voice file for the given line and speaker."""
+    filename = f"voice_{node_id}.wav"
+    filepath = os.path.join(OUTPUT_DIRECTORY, filename)
 
-    if isinstance(data, dict):
-        for key, value in data.items():
-            extract_spoken_lines(value, spoken_lines)
-    elif isinstance(data, list):
-        for item in data:
-            extract_spoken_lines(item, spoken_lines)
-    elif isinstance(data, str) and data.startswith("^"):
-        spoken_lines.append(data[1:])  # Remove the leading '^'
+    # Skip if the file already exists
+    if os.path.exists(filepath):
+        print(f"Skipped existing file: {filepath}")
+        return
 
-    return spoken_lines
+    print(f"Processing: {line}")
 
-def process_spoken_lines(lines):
-    """Convert spoken lines to speech and save them as .wav files."""
-    for line in lines:
-        # Generate a deterministic filename
-        filename = f"voice_{seeded_random(line)}.wav"
-        filepath = os.path.join(OUTPUT_DIRECTORY, filename)
+    # Use Mozilla TTS for "gloria" and a default voice otherwise
+    if speaker == "gloria":
+        command = f'tts --text "{line}" --model_name "tts_models/en/ljspeech/tacotron2-DDC" --speaker_idx 1 --out_path "{filepath}"'
+    else:
+        command = f'tts --text "{line}" --model_name "tts_models/en/ljspeech/tacotron2-DDC" --out_path "{filepath}"'
 
-        # Skip if the file already exists
-        if os.path.exists(filepath):
-            print(f"Skipped existing file: {filepath}")
-            continue
+    # Execute the command
+    subprocess.run(command, shell=True, check=True)
 
-        # Generate speech with Festival
-        print(f"Processing: {line}")
-        command = f'echo "{line}" | text2wave -o "{filepath}" -eval "(voice_us2_mbrola)"'
-        os.system(command)
-        print(f"Saved: {filepath}")
+    print(f"Saved: {filepath}")
+
+def process_dialogue_nodes(dialogue_nodes):
+    """Process all dialogue nodes and generate voice files."""
+    for node in dialogue_nodes:
+        if node.get("text_to_speech", False):
+            line = node.get("body_text", "")
+            speaker = node.get("speaker", None)
+            generate_voice(line, node["id"], speaker)
 
 def main():
-    # Load the Ink story JSON with UTF-8-sig encoding to handle BOM
+    """Main function to process the dialogue JSON and generate voice files."""
+    # Load the dialogue JSON file
     with open(INPUT_JSON_FILE, "r", encoding="utf-8-sig") as f:
-        story_data = json.load(f)
+        dialogue_nodes = json.load(f)
 
-    # Extract spoken lines
-    spoken_lines = extract_spoken_lines(story_data)
-
-    # Convert to speech and save as .wav files
-    process_spoken_lines(spoken_lines)
+    # Process each node for TTS
+    process_dialogue_nodes(dialogue_nodes)
 
 if __name__ == "__main__":
     main()
