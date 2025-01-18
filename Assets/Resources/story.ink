@@ -1,12 +1,12 @@
 -> Start
 === Start ===
-Welcome! I’m so glad you’re here. Let’s take a moment to center ourselves before we begin. Breathe in… and out.
+Welcome! I am so glad you are here. Let us take a moment to center ourselves before we begin. Breathe in… and out.
     
 + Continue ->
     -> Next1
 
 === Next1 ===
-You’ve taken the first step toward understanding yourself better. That’s no small thing. Let’s explore what’s on your mind today.
+You have taken the first step toward understanding yourself better. that is no small thing. Let us explore what is on your mind today.
    
 + Continue ->
     -> Next2
@@ -17,14 +17,14 @@ Before we dive in, place your palm on the scanner for me. This will help me pers
     -> Intro
 
 === Intro ===
-Everyone has challenges, but together, we’ll turn them into opportunities for insight and change. Shall we start?
+Everyone has challenges, but together, we shall turn them into opportunities for insight and change. Shall we start?
 
 * Yes ->
     -> Question1
 
 
 === Question1 ===
-Let’s begin by focusing on a memory that brings you peace. Can you describe it to me?
+Let us begin by focusing on a memory that brings you peace. Can you describe it to me?
 
 * A place I love ->
     -> MemoryPlace
@@ -40,7 +40,7 @@ How wonderful. Close your eyes and picture that place. Is it quiet, or is it fil
     -> SoundPlace
 
 === QuietPlace ===
-Silence has its own kind of power, doesn’t it? In that stillness, what emotions come up for you?
+Silence has its own kind of power, does it not? In that stillness, what emotions come up for you?
 
 * Peace ->
     -> SafePlace
@@ -56,7 +56,7 @@ Sounds can evoke powerful feelings. Is it the sound of nature, or perhaps music 
     -> MusicPlace
 
 === NaturePlace ===
-The world’s rhythms can be grounding. Imagine the wind, the rustle of leaves. Do you feel safe there?
+The rhythms of the world can be grounding. Imagine the wind, the rustle of leaves. Do you feel safe there?
 
 * Yes ->
     -> SafePlace
@@ -64,7 +64,7 @@ The world’s rhythms can be grounding. Imagine the wind, the rustle of leaves. 
     -> UnsafePlace
 
 === MusicPlace ===
-Music has a way of speaking to the parts of us that words can’t reach. What kind of music plays in this space?
+Music has a way of speaking to the parts of us that words cannot reach. What kind of music plays in this space?
 
 * Soft and gentle ->
     -> CalmMusic
@@ -77,12 +77,12 @@ Gentle melodies can wrap us in a sense of calm. Let that feeling flow through yo
     -> SafePlace
 
 === IntenseMusic ===
-Intensity often mirrors what we hold inside. It’s okay to sit with that energy and explore it.
+Intensity often mirrors what we hold inside. it is okay to sit with that energy and explore it.
 * Continue ->
     -> UnsafePlace
 
 === LonelyPlace ===
-Sometimes even peace can carry a shadow of longing. Longing is the mind’s way of pointing us toward what matters.
+Sometimes even peace can carry a shadow of longing. Longing is the way the mind points us toward what matters.
 * Continue ->
     -> Reflection
 
@@ -103,17 +103,17 @@ What a gift it is to know someone like that. Picture their face. Are they smilin
     -> MissingPerson
 
 === WarmPerson ===
-Hold onto that warmth—it’s a reflection of the connection you’ve built together. Let it guide you.
+Hold onto that warmth—it is a reflection of the connection You have built together. Let it guide you.
 * Continue ->
     -> SafePlace
 
 === MissingPerson ===
-Absence can teach us the value of presence. Let’s carry their memory with care.
+Absence can teach us the value of presence. Let us carry their memory with care.
 * Continue ->
     -> Reflection
 
 === DifficultPerson ===
-It’s okay to acknowledge the challenges others bring into our lives. Growth comes from this awareness. Is the difficulty rooted in misunderstanding or something deeper?
+it is okay to acknowledge the challenges others bring into our lives. Growth comes from this awareness. Is the difficulty rooted in misunderstanding or something deeper?
 
 * Misunderstanding ->
     -> Misunderstood
@@ -121,7 +121,7 @@ It’s okay to acknowledge the challenges others bring into our lives. Growth co
     -> BurdensomePerson
 
 === Misunderstood ===
-Misunderstandings can be bridges waiting to be built. Let’s reflect on how to approach this with openness.
+Misunderstandings can be bridges waiting to be built. Let us reflect on how to approach this with openness.
 * Continue -> Reflection
 
 === BurdensomePerson ===
@@ -130,17 +130,17 @@ Sometimes the weight of others’ expectations feels too much to carry. Setting 
     -> Reflection
 
 === SafePlace ===
-Not every space feels like a sanctuary, and that’s okay. Let’s explore what safety might look like for you.
+Not every space feels like a sanctuary, and that is okay. Let us explore what safety might look like for you.
 * Continue ->
     -> Reflection
 
 === UnsafePlace ===
-Not every space feels like a sanctuary, and that’s okay. Let’s explore what safety might look like for you.
+Not every space feels like a sanctuary, and that is okay. Let us explore what safety might look like for you.
 * Continue ->
     -> Reflection
 
 === Reflection ===
-You’ve carried these thoughts for a while, haven’t you? Reflection isn’t easy, but it’s where transformation begins.
+You have carried these thoughts for a while, have you not? Reflection is not easy, but it is where transformation begins.
 
 * I feel overwhelmed ->
     -> Overwhelmed
@@ -148,22 +148,22 @@ You’ve carried these thoughts for a while, haven’t you? Reflection isn’t e
     -> ReadyToGrow
 
 === Overwhelmed ===
-It’s okay to feel this way. Change can feel like standing on the edge of a cliff, but remember, you don’t have to jump alone.
+it is okay to feel this way. Change can feel like standing on the edge of a cliff, but remember, you do not have to jump alone.
 * Continue ->
     -> Ending
 
 === ReadyToGrow ===
-You’ve taken this step with courage. Growth is already underway, even if it doesn’t feel like it yet.
+You have taken this step with courage. Growth is already underway, even if it doesn’t feel like it yet.
 * Continue ->
     -> Ending
 
 === Exit ===
-I understand. Sometimes the journey starts with a single thought. I’ll be here when you’re ready.
+I understand. Sometimes the journey starts with a single thought. I’ll be here when you are ready.
 * Continue ->
     -> Ending
 
 === Ending ===
-I’m so proud of the courage you’ve shown today. Take a deep breath, and remember: growth isn’t linear, but it’s always possible.
+I am so proud of the courage You have shown today. Take a deep breath, and remember: growth is not linear, but it is always possible.
 * Continue ->
     -> Last
 
