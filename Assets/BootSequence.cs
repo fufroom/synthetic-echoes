@@ -46,6 +46,15 @@ public class BootSequence : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("User skip activated");
+            onBootSequenceComplete?.Invoke();
+        }
+    }
+
     private void LoadTextFromFile()
     {
         TextAsset file = Resources.Load<TextAsset>(bootTextFileName);

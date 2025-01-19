@@ -48,6 +48,8 @@ public class DialoguePlayer : MonoBehaviour
     private List<GameObject> currentChoiceButtons;
     private bool inputLocked = false;
 
+    public MouthController mouthController;
+
     void Start()
     {
         currentChoiceButtons = new List<GameObject>();
@@ -118,11 +120,12 @@ public class DialoguePlayer : MonoBehaviour
         }
 
         // Pick a random error
-        ErrorEntry randomError = errors[Random.Range(0, errors.Count)];
+        int errorPick = Random.Range(0, errors.Count);
+        ErrorEntry randomError = errors[errorPick];
         currentNode.body_text = randomError.message;
 
         // Set the play_sound path
-        currentNode.play_sound = $"sounds/errors/error-{randomError.id}";
+        PlayError(errorPick);
 
         // Display SystemReset-specific button
         foreach (Transform child in choiceContainer)
@@ -235,10 +238,34 @@ public class DialoguePlayer : MonoBehaviour
         {
             audioSource.clip = clip;
             audioSource.Play();
+             if (mouthController != null)
+            {
+                mouthController.audioSource = audioSource;
+            }
         }
         else
         {
             Debug.LogWarning($"Voice file not found for {resourcePath}");
+        }
+    }
+
+
+      void PlayError(int errorNumber)
+    {
+        string resourcePath = $"sounds/errors/error-{errorNumber}.wav";
+        AudioClip clip = Resources.Load<AudioClip>(resourcePath);
+        if (clip != null)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+             if (mouthController != null)
+            {
+                mouthController.audioSource = audioSource;
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Error file not found for {resourcePath}");
         }
     }
 

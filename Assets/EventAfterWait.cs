@@ -11,6 +11,9 @@ public class EventAfterWait : MonoBehaviour
     [Header("Event")]
     public UnityEvent onWaitCompleted; // Unity Event to trigger after the wait
 
+    private Coroutine waitCoroutine;
+    private bool isCancelled = false;
+
     private void Start()
     {
         if (triggerOnStart)
@@ -19,17 +22,51 @@ public class EventAfterWait : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("User skip activated");
+            CancelWaiting();
+            onWaitCompleted?.Invoke();
+        }
+    }
+
     /// <summary>
     /// Starts the wait timer and triggers the event after the specified time.
     /// </summary>
     public void StartWaiting()
     {
-        StartCoroutine(WaitAndTrigger());
+        isCancelled = false;
+        if (waitCoroutine != null)
+        {
+            StopCoroutine(waitCoroutine);
+        }
+        waitCoroutine = StartCoroutine(WaitAndTrigger());
+    }
+
+    /// <summary>
+    /// Cancels the waiting coroutine if it is running.
+    /// </summary>
+    public void CancelWaiting()
+    {
+        if (waitCoroutine != null)
+        {
+            StopCoroutine(waitCoroutine);
+            waitCoroutine = null;
+            isCancelled = true;
+        }
     }
 
     private IEnumerator WaitAndTrigger()
     {
         yield return new WaitForSeconds(waitTime);
-        onWaitCompleted?.Invoke();
+        
+        if (!isCancelled)
+        {
+            onWaitCompleted?.Invoke();
+        }
+
+        waitCoroutine = null;
     }
 }

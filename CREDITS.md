@@ -244,3 +244,18 @@ Logo Bumper
 Overall rating (10 ratings)
 MosesBrambila
 https://freesound.org/people/MosesBrambila/sounds/438943/
+
+
+
+
+Error Tone.wav
+Overall rating (8 ratings)
+Glitchedtones
+https://freesound.org/people/Glitchedtones/sounds/330359/
+
+
+
+PC speaker error beep.wav
+Overall rating (15 ratings)
+CZghost
+https://freesound.org/people/CZghost/sounds/264823/

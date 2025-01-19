@@ -45,7 +45,7 @@
         "body_text": "Before we dive in, place your palm on the scanner for me. This will help me personalize your session and create a safe space for growth.",
         "choices": [
             {
-                "text": "Continue",
+                "text": "[Place palm on scanner]",
                 "next_node": "Intro",
                 "button": "space"
             }
@@ -436,7 +436,7 @@
             }
         ],
         "text_to_speech": true,
-        "play_sound": "joyful_person_prompt",
+        "play_sound": "whisper_know_nothing",
         "modify_stat": {"curiosity": "+2"},
         "animation": "Being Cocky",
         "effect_trigger": "happy_glow",
@@ -530,7 +530,7 @@
             }
         ],
         "text_to_speech": true,
-        "play_sound": "missing_person_prompt",
+        "play_sound": "faint_glitch_tone",
         "modify_stat": {"curiosity": "-1"},
         "animation": "Right Turn",
         "effect_trigger": "memory_wave",
