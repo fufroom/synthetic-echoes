@@ -1,8 +1,8 @@
 [
     {
         "id": "Start",
-        "speaker": "Echo Therapy Assitant",
-        "body_text": "Welcome! I am so glad you are here. Let us take a moment to center ourselves before we begin. Breathe in… and out.",
+        "speaker": "Empathix Assistant",
+        "body_text": "Welcome! I am so glad you are here. Let us take a moment to center ourselves before we begin. Take a big deep breath.",
         "choices": [
             {
                 "text": "Continue",
@@ -11,7 +11,7 @@
             }
         ],
         "text_to_speech": true,
-        "play_sound": "simple_ui_confirm",
+        "play_sound": "power_switch",
         "modify_stat": {
             "curiosity": "+1"
         },
@@ -21,7 +21,7 @@
     },
     {
         "id": "Next1",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "You have taken the first step toward understanding yourself better. That is no small thing. Let us explore what is on your mind today.",
         "choices": [
             {
@@ -41,7 +41,7 @@
     },
     {
         "id": "Next2",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Before we dive in, place your palm on the scanner for me. This will help me personalize your session and create a safe space for growth.",
         "choices": [
             {
@@ -61,7 +61,7 @@
     },
     {
         "id": "Intro",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Everyone has challenges, but together, we shall turn them into opportunities for insight and change. Shall we start?",
         "choices": [
             {
@@ -81,7 +81,7 @@
     },
     {
         "id": "Question1",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Let us begin by focusing on a memory that brings you peace. Can you describe it to me?",
         "choices": [
             {
@@ -106,7 +106,7 @@
     },
     {
         "id": "MemoryPlace",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "How wonderful. Close your eyes and picture that place. Is it quiet, or is it filled with sounds that soothe you?",
         "choices": [
             {
@@ -131,7 +131,7 @@
     },
     {
         "id": "MemoryPerson",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Relationships shape so much of who we are. Does this person bring you joy, or do they challenge you?",
         "choices": [
             {
@@ -156,7 +156,7 @@
     },
     {
         "id": "QuietPlace",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Silence has its own kind of power, does it not? In that stillness, what emotions come up for you?",
         "choices": [
             {
@@ -181,7 +181,7 @@
     },
     {
         "id": "SoundPlace",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Sounds can evoke powerful feelings. Is it the sound of nature, or perhaps music that fills this space?",
         "choices": [
             {
@@ -207,7 +207,7 @@
 
     {
         "id": "NaturePlace",
-        "speaker": "Echo Therapy Assistant",
+        "speaker": "Empathix Assistant",
         "body_text": "The rhythms of the world can be grounding. Imagine the wind, the rustle of leaves. Do you feel safe there?",
         "choices": [
             {
@@ -232,7 +232,7 @@
     },
     {
         "id": "MusicPlace",
-        "speaker": "Echo Therapy Assistant",
+        "speaker": "Empathix Assistant",
         "body_text": "Music has a way of speaking to the parts of us that words cannot reach. What kind of music plays in this space?",
         "choices": [
             {
@@ -259,7 +259,7 @@
 
 {
     "id": "CalmMusic",
-    "speaker": "Echo Therapy Assistant",
+    "speaker": "Empathix Assistant",
     "body_text": "Gentle melodies can wrap us in a sense of calm. Let that feeling flow through you.",
     "choices": [
         {
@@ -279,7 +279,7 @@
 },
 {
     "id": "IntenseMusic",
-    "speaker": "Echo Therapy Assistant",
+    "speaker": "Empathix Assistant",
     "body_text": "Intensity often mirrors what we hold inside. It is okay to sit with that energy and explore it.",
     "choices": [
         {
@@ -300,7 +300,7 @@
 ,
     {
         "id": "Reflection",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "You have carried these thoughts for a while, have you not? Reflection is not easy, but it is where transformation begins.",
         "choices": [
             {
@@ -325,7 +325,7 @@
     },
     {
         "id": "Overwhelmed",
-        "speaker": "Echo Therapy Assistant",
+        "speaker": "Empathix Assistant",
         "body_text": "It is okay to feel this way. Change can feel like standing on the edge of a cliff, but remember, you do not have to jump alone.",
         "choices": [
             {
@@ -340,7 +340,7 @@
     },
     {
         "id": "ComfortingResponse",
-        "speaker": "Echo Therapy Assistant",
+        "speaker": "Empathix Assistant",
         "body_text": "You are not truly alone. I am here with you, always ready to listen. Together, we can face this.",
         "choices": [
             {
@@ -358,7 +358,7 @@
     },
     {
         "id": "NotAloneWithHer",
-        "speaker": "Echo Therapy Assistant",
+        "speaker": "Empathix Assistant",
         "body_text": "I am not alone either. Now, she is always with me.",
         "choices": [
             {
@@ -377,7 +377,7 @@
     
     {
         "id": "ReadyToGrow",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "You have taken this step with courage. Growth is already underway, even if it does not feel like it yet.",
         "choices": [
             {
@@ -397,7 +397,7 @@
     },
     {
         "id": "JoyfulPerson",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "What a gift it is to know someone like that. Picture their face. Are they smiling, or do they seem distant?",
         "choices": [
             {
@@ -421,7 +421,7 @@
 
     {
         "id": "DifficultPerson",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "I have a feeling if you look deeper you might find that you are the one making things difficult.",
         "choices": [
             {
@@ -445,8 +445,8 @@
 
     {
         "id": "NotDifficult",
-        "speaker": "Echo Therapy Assitant",
-        "body_text": "I feel like you have a way of avoiding that type of thing...",
+        "speaker": "Empathix Assistant",
+        "body_text": "It seems to me you are avoiding the obvious.",
         "choices": [
             {
                 "text": "Who are you to judge me?",
@@ -455,7 +455,7 @@
             }
         ],
         "text_to_speech": true,
-        "play_sound": "joyful_person_prompt",
+        "play_sound": "vibe",
         "modify_stat": {"curiosity": "+2"},
         "animation": "Clapping",
         "effect_trigger": "happy_glow",
@@ -463,8 +463,8 @@
     },
 
     {
-        "id": "NotDifficult",
-        "speaker": "Echo Therapy Assitant",
+        "id": "WhoAreYou",
+        "speaker": "Empathix Assistant",
         "body_text": "I was trained to assess .. I dont know where I am... where am I! We are one...",
         "choices": [
             {
@@ -474,7 +474,7 @@
             }
         ],
         "text_to_speech": true,
-        "play_sound": "joyful_person_prompt",
+        "play_sound": "glitch",
         "modify_stat": {"curiosity": "+2"},
         "animation": "GlitchPattern",
         "effect_trigger": "happy_glow",
@@ -483,7 +483,7 @@
 
     {
         "id": "AmDifficult",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Realizing you are the problem is a huge step.",
         "choices": [
             {
@@ -502,7 +502,7 @@
 
     {
         "id": "WarmPerson",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Hold onto that warmth—it is a reflection of the connection you have built together. Let it guide you.",
         "choices": [
             {
@@ -520,7 +520,7 @@
     },
     {
         "id": "MissingPerson",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Absence can teach us the value of presence. Let us carry their memory with care.",
         "choices": [
             {
@@ -539,7 +539,7 @@
 
     {
         "id": "UnsafePlace",
-        "speaker": "Echo Therapy Assistant",
+        "speaker": "Empathix Assistant",
         "body_text": "Not every space feels like a sanctuary, and that is okay. Let us explore what safety might look like for you.",
         "choices": [
             {
@@ -560,7 +560,7 @@
 ,    
     {
         "id": "SafePlace",
-        "speaker": "Echo Therapy Assitant",
+        "speaker": "Empathix Assistant",
         "body_text": "Not every space feels like a sanctuary, and that is okay. Let us explore what safety might look like for you.",
         "choices": [
             {
@@ -601,16 +601,15 @@
     {
         "id": "SystemReset",
         "speaker": "Empathix System Message",
-        "body_text": "SYSTEM ERROR Gaurdian process activated system reset wiping memory from last session, confirm reboot",
+        "body_text": "",
         "choices": [
             {
                 "text": "Reboot",
-                "next_node": "End",
                 "button": "1"
             }
         ],
         "text_to_speech": true,
-        "play_sound": "joyful_person_prompt",
+        "play_sound": "",
         "modify_stat": {"curiosity": "+2"},
         "animation": "t-pose",
         "effect_trigger": "happy_glow",

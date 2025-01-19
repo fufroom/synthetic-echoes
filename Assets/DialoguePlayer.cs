@@ -29,6 +29,13 @@ public class DialoguePlayer : MonoBehaviour
         public string vibration_trigger;
     }
 
+    [System.Serializable]
+    public class ErrorEntry
+    {
+        public string id;
+        public string message;
+    }
+
     public TMP_Text storyText;
     public TMP_Text speakerText;
     public Transform choiceContainer;
@@ -45,6 +52,8 @@ public class DialoguePlayer : MonoBehaviour
     {
         currentChoiceButtons = new List<GameObject>();
         LoadDialogue();
+
+        // Start with the "Start" node
         StartNode("Start");
     }
 
@@ -79,32 +88,94 @@ public class DialoguePlayer : MonoBehaviour
         }
 
         currentNode = dialogueNodes[nodeId];
-        RefreshView();
+
+        // Handle special SystemReset node
+        if (nodeId == "SystemReset")
+        {
+            HandleSystemResetNode();
+        }
+        else
+        {
+            RefreshView();
+        }
     }
 
-    void RefreshView()
+    void HandleSystemResetNode()
     {
-        // Clear UI
-        storyText.text = currentNode.body_text;
-        speakerText.text = currentNode.speaker;
+        // Load errors from errors.json
+        TextAsset errorsJSON = Resources.Load<TextAsset>("errors");
+        if (errorsJSON == null)
+        {
+            Debug.LogError("errors.json file not found in Resources folder!");
+            return;
+        }
+
+        List<ErrorEntry> errors = JsonConvert.DeserializeObject<List<ErrorEntry>>(errorsJSON.text);
+        if (errors == null || errors.Count == 0)
+        {
+            Debug.LogError("No errors found in errors.json!");
+            return;
+        }
+
+        // Pick a random error
+        ErrorEntry randomError = errors[Random.Range(0, errors.Count)];
+        currentNode.body_text = randomError.message;
+
+        // Set the play_sound path
+        currentNode.play_sound = $"sounds/errors/error-{randomError.id}";
+
+        // Display SystemReset-specific button
         foreach (Transform child in choiceContainer)
         {
             Destroy(child.gameObject);
         }
         currentChoiceButtons.Clear();
 
-        // Handle audio
+        GameObject button = Instantiate(choiceButtonPrefab, choiceContainer);
+        TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+        buttonText.text = "[1] Reboot";
+        button.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+        {
+            UnityEngine.Events.UnityEvent rebootEvent = new UnityEngine.Events.UnityEvent();
+            rebootEvent.AddListener(RebootSequence);
+            rebootEvent.Invoke();
+        });
+
+        currentChoiceButtons.Add(button);
+
+        // Play the sound
+        PlaySound(currentNode.play_sound);
+
+        // Refresh UI for SystemReset
+        storyText.text = currentNode.body_text;
+        speakerText.text = currentNode.speaker;
+    }
+
+    void RefreshView()
+    {
+        // Clear existing UI
+        storyText.text = currentNode.body_text;
+        speakerText.text = currentNode.speaker;
+
+        foreach (Transform child in choiceContainer)
+        {
+            Destroy(child.gameObject);
+        }
+        currentChoiceButtons.Clear();
+
+        // Play voice if text-to-speech is enabled
         if (currentNode.text_to_speech)
         {
             PlayVoice(currentNode.id);
         }
 
+        // Play sound if specified
         if (!string.IsNullOrEmpty(currentNode.play_sound))
         {
             PlaySound(currentNode.play_sound);
         }
 
-        // Handle stats
+        // Handle stats modification
         if (currentNode.modify_stat != null)
         {
             foreach (var stat in currentNode.modify_stat)
@@ -113,37 +184,24 @@ public class DialoguePlayer : MonoBehaviour
             }
         }
 
-        // Handle animation
+        // Trigger animation
         if (!string.IsNullOrEmpty(currentNode.animation))
         {
             linkedAnimator.Play(currentNode.animation);
         }
 
-        // Handle effects
+        // Trigger effects
         if (!string.IsNullOrEmpty(currentNode.effect_trigger) && currentNode.effect_trigger != "none")
         {
             TriggerEffect(currentNode.effect_trigger);
         }
 
-        // Display choices
+        // Create choice buttons
         foreach (var choice in currentNode.choices)
         {
             GameObject button = Instantiate(choiceButtonPrefab, choiceContainer);
             TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
-
-            // Adjust button text based on the button type
-            if (choice.button == "space")
-            {
-                buttonText.text = "[Please scan your palm]";
-            }
-            else if (choice.button == "1")
-            {
-                buttonText.text = "[1] " + choice.text;
-            }
-            else if (choice.button == "2")
-            {
-                buttonText.text = "[2] " + choice.text;
-            }
+            buttonText.text = "[1] " + choice.text;
 
             button.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
             {
@@ -166,26 +224,6 @@ public class DialoguePlayer : MonoBehaviour
         {
             inputLocked = true; // Lock input to prevent holding keys
             currentChoiceButtons[0].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
-        }
-
-        if (currentChoiceButtons.Count >= 2 && Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            inputLocked = true; // Lock input to prevent holding keys
-            currentChoiceButtons[1].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            foreach (var button in currentChoiceButtons)
-            {
-                TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
-                if (buttonText.text.ToLower() == "[please scan your palm]")
-                {
-                    inputLocked = true; // Lock input to prevent holding keys
-                    button.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
-                    break;
-                }
-            }
         }
     }
 
@@ -225,14 +263,12 @@ public class DialoguePlayer : MonoBehaviour
 
     void TriggerEffect(string effectName)
     {
-        // GameObject effectPrefab = Resources.Load<GameObject>($"Effects/{effectName}");
-        // if (effectPrefab != null)
-        // {
-        //     Instantiate(effectPrefab);
-        // }
-        // else
-        // {
-        //     Debug.LogWarning($"Effect prefab not found for {effectName}");
-        // }
+        // Effect triggering logic (placeholder)
+    }
+
+    void RebootSequence()
+    {
+        Debug.Log("Reboot sequence initiated.");
+        // Add your Unity event logic for the reboot here.
     }
 }
