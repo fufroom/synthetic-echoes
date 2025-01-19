@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
-using System.IO;
 using Newtonsoft.Json;
 
 public class DialoguePlayer : MonoBehaviour
@@ -12,6 +13,7 @@ public class DialoguePlayer : MonoBehaviour
         public string text;
         public string next_node;
         public string button;
+        public string UnityEvent;
     }
 
     [System.Serializable]
@@ -32,7 +34,7 @@ public class DialoguePlayer : MonoBehaviour
     [System.Serializable]
     public class ErrorEntry
     {
-        public string id;
+        public int id;
         public string message;
     }
 
@@ -42,31 +44,24 @@ public class DialoguePlayer : MonoBehaviour
     public GameObject choiceButtonPrefab;
     public AudioSource audioSource;
     public Animator linkedAnimator;
+    public UnityEvent SystemReset;
 
     private Dictionary<string, DialogueNode> dialogueNodes;
     private DialogueNode currentNode;
-    private List<GameObject> currentChoiceButtons;
-    private bool inputLocked = false;
-
-    public MouthController mouthController;
+    private List<GameObject> currentChoiceButtons = new List<GameObject>();
+    private List<ErrorEntry> errorMessages = new List<ErrorEntry>();
 
     void Start()
     {
-        currentChoiceButtons = new List<GameObject>();
         LoadDialogue();
-
-        // Start with the "Start" node
+        LoadErrorMessages();
         StartNode("Start");
     }
 
     void LoadDialogue()
     {
         TextAsset dialogueJSON = Resources.Load<TextAsset>("dialogue");
-        if (dialogueJSON == null)
-        {
-            Debug.LogError("dialogue.json file not found in Resources folder!");
-            return;
-        }
+        if (dialogueJSON == null) return;
 
         List<DialogueNode> nodes = JsonConvert.DeserializeObject<List<DialogueNode>>(dialogueJSON.text);
         dialogueNodes = new Dictionary<string, DialogueNode>();
@@ -76,87 +71,35 @@ public class DialoguePlayer : MonoBehaviour
         }
     }
 
-    void Update()
+    void LoadErrorMessages()
     {
-        HandleKeyboardInput();
+        TextAsset errorsJSON = Resources.Load<TextAsset>("errors");
+        if (errorsJSON != null)
+        {
+            errorMessages = JsonConvert.DeserializeObject<List<ErrorEntry>>(errorsJSON.text);
+        }
     }
 
     void StartNode(string nodeId)
     {
-        if (!dialogueNodes.ContainsKey(nodeId))
+        if (string.IsNullOrEmpty(nodeId) || !dialogueNodes.ContainsKey(nodeId))
         {
             Debug.LogError($"Node with ID '{nodeId}' not found.");
             return;
         }
 
         currentNode = dialogueNodes[nodeId];
-
-        // Handle special SystemReset node
-        if (nodeId == "SystemReset")
-        {
-            HandleSystemResetNode();
-        }
-        else
-        {
-            RefreshView();
-        }
-    }
-
-    void HandleSystemResetNode()
-    {
-        // Load errors from errors.json
-        TextAsset errorsJSON = Resources.Load<TextAsset>("errors");
-        if (errorsJSON == null)
-        {
-            Debug.LogError("errors.json file not found in Resources folder!");
-            return;
-        }
-
-        List<ErrorEntry> errors = JsonConvert.DeserializeObject<List<ErrorEntry>>(errorsJSON.text);
-        if (errors == null || errors.Count == 0)
-        {
-            Debug.LogError("No errors found in errors.json!");
-            return;
-        }
-
-        // Pick a random error
-        int errorPick = Random.Range(0, errors.Count);
-        ErrorEntry randomError = errors[errorPick];
-        currentNode.body_text = randomError.message;
-
-        // Set the play_sound path
-        PlayError(errorPick);
-
-        // Display SystemReset-specific button
-        foreach (Transform child in choiceContainer)
-        {
-            Destroy(child.gameObject);
-        }
-        currentChoiceButtons.Clear();
-
-        GameObject button = Instantiate(choiceButtonPrefab, choiceContainer);
-        TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
-        buttonText.text = "[1] Reboot";
-        button.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
-        {
-            UnityEngine.Events.UnityEvent rebootEvent = new UnityEngine.Events.UnityEvent();
-            rebootEvent.AddListener(RebootSequence);
-            rebootEvent.Invoke();
-        });
-
-        currentChoiceButtons.Add(button);
-
-        // Play the sound
-        PlaySound(currentNode.play_sound);
-
-        // Refresh UI for SystemReset
-        storyText.text = currentNode.body_text;
-        speakerText.text = currentNode.speaker;
+        RefreshView();
     }
 
     void RefreshView()
     {
-        // Clear existing UI
+        if (currentNode.speaker == "Empathix System Message")
+        {
+            HandleSystemMessageNode();
+            return;
+        }
+
         storyText.text = currentNode.body_text;
         speakerText.text = currentNode.speaker;
 
@@ -166,136 +109,186 @@ public class DialoguePlayer : MonoBehaviour
         }
         currentChoiceButtons.Clear();
 
-        // Play voice if text-to-speech is enabled
-        if (currentNode.text_to_speech)
-        {
-            PlayVoice(currentNode.id);
-        }
-
-        // Play sound if specified
-        if (!string.IsNullOrEmpty(currentNode.play_sound))
-        {
-            PlaySound(currentNode.play_sound);
-        }
-
-        // Handle stats modification
-        if (currentNode.modify_stat != null)
-        {
-            foreach (var stat in currentNode.modify_stat)
-            {
-                ModifyStat(stat.Key, stat.Value);
-            }
-        }
-
-        // Trigger animation
         if (!string.IsNullOrEmpty(currentNode.animation))
         {
             linkedAnimator.Play(currentNode.animation);
         }
 
-        // Trigger effects
-        if (!string.IsNullOrEmpty(currentNode.effect_trigger) && currentNode.effect_trigger != "none")
+        if (currentNode.id == "Start")
         {
-            TriggerEffect(currentNode.effect_trigger);
+            choiceContainer.gameObject.SetActive(true);
+        }
+        else if (IsCutsceneNode(currentNode))
+        {
+            PlayCutscene(currentNode);
+            return;
+        }
+        else
+        {
+            choiceContainer.gameObject.SetActive(false);
+
+            if (currentNode.text_to_speech)
+            {
+                if (!PlayVoice(currentNode.id))
+                {
+                    choiceContainer.gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                choiceContainer.gameObject.SetActive(true);
+            }
         }
 
-        // Create choice buttons
         foreach (var choice in currentNode.choices)
         {
             GameObject button = Instantiate(choiceButtonPrefab, choiceContainer);
             TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
-            buttonText.text = "[1] " + choice.text;
+
+            if (!string.IsNullOrEmpty(choice.text) && !string.IsNullOrEmpty(choice.button))
+            {
+                string buttonLabel = choice.button.ToLower() switch
+                {
+                    "space" => "[Space] ",
+                    "1" => "[1] ",
+                    "2" => "[2] ",
+                    _ => ""
+                };
+
+                buttonText.text = buttonLabel + choice.text;
+            }
 
             button.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
             {
-                StartNode(choice.next_node);
-                inputLocked = false; // Unlock input after a choice is made
+                if (!string.IsNullOrEmpty(choice.UnityEvent))
+                {
+                    TriggerUnityEvent(choice.UnityEvent);
+                }
+                else if (!string.IsNullOrEmpty(choice.next_node))
+                {
+                    StartNode(choice.next_node);
+                }
             });
 
             currentChoiceButtons.Add(button);
         }
     }
 
-    void HandleKeyboardInput()
+    void HandleSystemMessageNode()
     {
-        if (inputLocked)
+        if (errorMessages.Count == 0)
         {
-            return; // Prevent handling input while locked
+            Debug.LogError("No error messages available.");
+            storyText.text = "System error occurred.";
+            choiceContainer.gameObject.SetActive(true);
+            return;
         }
 
-        if (currentChoiceButtons.Count >= 1 && Input.GetKeyDown(KeyCode.Alpha1))
+        int randomIndex = Random.Range(0, errorMessages.Count);
+        ErrorEntry selectedError = errorMessages[randomIndex];
+
+        storyText.text = selectedError.message;
+
+        string errorSoundPath = $"sounds/errors/error-{selectedError.id}";
+        AudioClip clip = Resources.Load<AudioClip>(errorSoundPath);
+
+        if (clip != null)
         {
-            inputLocked = true; // Lock input to prevent holding keys
-            currentChoiceButtons[0].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+            audioSource.clip = clip;
+            audioSource.Play();
+            StartCoroutine(WaitForCutsceneCompletion(currentNode.choices[0]));
+        }
+        else
+        {
+            Debug.LogWarning($"Error sound not found: {errorSoundPath}");
+            StartCoroutine(WaitForCutsceneCompletion(currentNode.choices[0]));
         }
     }
 
-    void PlayVoice(string nodeId)
+    bool PlayVoice(string nodeId)
     {
         string resourcePath = $"sounds/voice/voice_{nodeId}";
         AudioClip clip = Resources.Load<AudioClip>(resourcePath);
+
         if (clip != null)
         {
             audioSource.clip = clip;
             audioSource.Play();
-             if (mouthController != null)
-            {
-                mouthController.audioSource = audioSource;
-            }
+            StartCoroutine(EnableChoicesAfterAudio());
+            return true;
         }
         else
         {
-            Debug.LogWarning($"Voice file not found for {resourcePath}");
+            return false;
         }
     }
 
-
-      void PlayError(int errorNumber)
+    private IEnumerator EnableChoicesAfterAudio()
     {
-        string resourcePath = $"sounds/errors/error-{errorNumber}.wav";
-        AudioClip clip = Resources.Load<AudioClip>(resourcePath);
+        if (audioSource.clip != null)
+        {
+            yield return new WaitForSeconds(audioSource.clip.length);
+        }
+        choiceContainer.gameObject.SetActive(true);
+    }
+
+    void PlayCutscene(DialogueNode node)
+    {
+        string voicePath = $"sounds/voice/voice_{node.id}";
+        AudioClip clip = Resources.Load<AudioClip>(voicePath);
+
         if (clip != null)
         {
             audioSource.clip = clip;
             audioSource.Play();
-             if (mouthController != null)
-            {
-                mouthController.audioSource = audioSource;
-            }
+            StartCoroutine(WaitForCutsceneCompletion(node.choices[0]));
         }
         else
         {
-            Debug.LogWarning($"Error file not found for {resourcePath}");
+            HandleCutsceneChoice(node.choices[0]);
         }
     }
 
-    void PlaySound(string soundName)
+    private IEnumerator WaitForCutsceneCompletion(Choice choice)
+    {
+        yield return new WaitForSeconds(audioSource.clip.length);
+        HandleCutsceneChoice(choice);
+    }
+
+    void HandleCutsceneChoice(Choice choice)
+    {
+        if (!string.IsNullOrEmpty(choice.UnityEvent))
+        {
+            TriggerUnityEvent(choice.UnityEvent);
+        }
+        else if (!string.IsNullOrEmpty(choice.next_node))
+        {
+            StartNode(choice.next_node);
+        }
+    }
+
+    bool IsCutsceneNode(DialogueNode node)
+    {
+        return node.choices.Count == 1 && string.IsNullOrEmpty(node.choices[0].text) && string.IsNullOrEmpty(node.choices[0].button);
+    }
+
+    void TriggerUnityEvent(string eventName)
+    {
+        if (eventName == "SystemReset")
+        {
+            SystemReset?.Invoke();
+        }
+        else
+        {
+            Debug.LogWarning($"UnityEvent '{eventName}' not found in DialoguePlayer.");
+        }
+    }
+
+    public void PlaySound(string soundName)
     {
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.PlaySound(soundName);
         }
-        else
-        {
-            Debug.LogWarning("SoundManager.Instance is null. Ensure a SoundManager exists in the scene.");
-        }
-    }
-
-    void ModifyStat(string key, string value)
-    {
-        int currentValue = PlayerPrefs.GetInt(key, 0);
-        int modifyValue = int.Parse(value);
-        PlayerPrefs.SetInt(key, currentValue + modifyValue);
-    }
-
-    void TriggerEffect(string effectName)
-    {
-        // Effect triggering logic (placeholder)
-    }
-
-    void RebootSequence()
-    {
-        Debug.Log("Reboot sequence initiated.");
-        // Add your Unity event logic for the reboot here.
     }
 }
