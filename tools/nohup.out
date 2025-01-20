@@ -1,0 +1,27 @@
+[00005df3728c96d0] main libvlc: Running vlc with the default interface. Use 'cvlc' to use vlc without interface.
+Gtk-Message: 00:37:56.296: Failed to load module "canberra-gtk-module"
+Gtk-Message: 00:37:56.297: Failed to load module "canberra-gtk-module"
+qt.qpa.qgnomeplatform: Could not find color scheme  ""
+Qt: Session management error: Could not open network socket
+libva info: VA-API version 1.19.0
+libva info: Trying to open /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
+libva info: Trying to open /usr/lib/x86_64-linux-gnu/dri/intel-vaapi-driver/iHD_drv_video.so
+libva info: Found init function __vaDriverInit_1_19
+libva info: va_openDriver() returns 0
+[000075b394c18490] avcodec decoder: Using Intel iHD driver for Intel(R) Gen Graphics - 23.4.3 () for hardware decoding
+[hevc @ 0x75b394c95a80] Could not find ref with POC 6993
+[hevc @ 0x75b394c8c140] Could not find ref with POC 7003
+[hevc @ 0x75b394c95a80] Could not find ref with POC 7008
+[hevc @ 0x75b394c3a5c0] Could not find ref with POC 7013
+[hevc @ 0x75b394c95a80] Could not find ref with POC 7581
+[00005791a519a6d0] main libvlc: Running vlc with the default interface. Use 'cvlc' to use vlc without interface.
+Gtk-Message: 13:11:32.221: Failed to load module "canberra-gtk-module"
+Gtk-Message: 13:11:32.222: Failed to load module "canberra-gtk-module"
+qt.qpa.qgnomeplatform: Could not find color scheme  ""
+Qt: Session management error: Could not open network socket
+libva info: VA-API version 1.19.0
+libva info: Trying to open /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
+libva info: Trying to open /usr/lib/x86_64-linux-gnu/dri/intel-vaapi-driver/iHD_drv_video.so
+libva info: Found init function __vaDriverInit_1_19
+libva info: va_openDriver() returns 0
+[00007a2f98c184c0] avcodec decoder: Using Intel iHD driver for Intel(R) Gen Graphics - 23.4.3 () for hardware decoding

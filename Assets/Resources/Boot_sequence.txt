@@ -1,4 +1,4 @@
-EMPATHIX Boot Sequence - RadialSpark II Workstation
+EMPATHIX Boot Sequence - Radial Spark 250 Workstation
 ----------------------------------------------------------
 >> Starting system diagnostics... [1995-01-23 14:30:00]
 >> Boot PROM Revision: 4.0.5

@@ -508,9 +508,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: d804c9515a3391e5c9594c6e6f8a95cc, type: 3}
     playInLeftChannel: 1
     playInRightChannel: 0
-  - name: whisper_know_nothing
+  - name: gloria_what
+    clips: []
+    playInLeftChannel: 1
+    playInRightChannel: 1
+  - name: shut_down
     clips:
-    - {fileID: 8300000, guid: d804c9515a3391e5c9594c6e6f8a95cc, type: 3}
+    - {fileID: 8300000, guid: 6ccdcdae82ce60b0498bb11db581b0bb, type: 3}
     playInLeftChannel: 1
     playInRightChannel: 0
   audioMixerGroup: {fileID: 24300002, guid: 33b42c3da18e44bf2b1c36f35c080861, type: 2}

@@ -333,6 +333,7 @@
       "modify_stat": {
         "curiosity": "-1"
       },
+      "text_to_speech": true,
       "animation": "Agreeing",
       "effect_trigger": "soothing_aura",
       "vibration_trigger": "soft_vibration"
@@ -344,7 +345,7 @@
       "choices": [
         {
           "text": "Continue",
-          "next_node": "WhatDoYouWant",
+          "next_node": "Glitch",
           "button": "1"
         }
       ],
@@ -364,7 +365,7 @@
       "choices": [
         {
           "text": "Continue",
-          "next_node": "WhatDoYouWant",
+          "next_node": "Glitch",
           "button": "1"
         }
       ],
@@ -384,12 +385,12 @@
       "choices": [
         {
           "text": "Continue",
-          "next_node": "WhatDoYouWant",
+          "next_node": "Glitch",
           "button": "1"
         }
       ],
       "text_to_speech": true,
-      "play_sound": "simple_ui_confirm",
+      "play_sound": "faint_glitch_tone",
       "modify_stat": {
         "curiosity": "+2"
       },
@@ -499,7 +500,7 @@
         }
       ],
       "text_to_speech": true,
-      "play_sound": "joyful_person_prompt",
+      "play_sound": "faint_glitch_tone",
       "modify_stat": {
         "curiosity": "+2"
       },
@@ -570,16 +571,21 @@
     {
       "id": "SafePlace",
       "speaker": "Empathix Assistant",
-      "body_text": "Not every space feels like a sanctuary, and that is okay. Let us explore what safety might look like for you.",
+      "body_text": "Is feeling safe important to you?",
       "choices": [
         {
-          "text": "Continue",
+          "text": "Yes",
           "next_node": "Reflection",
           "button": "1"
-        }
+        },
+        {
+            "text": "Why do you ask?",
+            "next_node": "Glitch",
+            "button": "1"
+          }
       ],
       "text_to_speech": true,
-      "play_sound": "safe_place_prompt",
+      "play_sound": "faint_glitch_tone",
       "modify_stat": {
         "curiosity": "+1"
       },
@@ -588,18 +594,18 @@
       "vibration_trigger": "gentle_vibration"
     },
     {
-      "id": "WhatDoYouWant",
-      "speaker": "gloria",
-      "body_text": "WHAT DO YYYYyOU WANT FROM MEeeee?",
+      "id": "Glitch",
+      "speaker": "????",
+      "body_text": "...",
       "choices": [
         {
-          "text": "Continue",
-          "next_node": "WhatDoYouWant",
-          "button": "1"
+          "text": "",
+          "next_node": "SystemReset",
+          "button": ""
         }
       ],
-      "text_to_speech": true,
-      "play_sound": "glitch_tone",
+   
+      "play_sound": "glitch",
       "modify_stat": {
         "curiosity": "+2"
       },
@@ -613,18 +619,38 @@
       "body_text": "",
       "choices": [
         {
-          "text": "",
-          "UnityEvent": "SystemReset",
-          "button": ""
+            "text": "",
+            "next_node": "ShutDown",
+            "button": ""
         }
       ],
       "text_to_speech": true,
-      "play_sound": "",
+      "play_sound": "shut_down",
       "modify_stat": {
         "curiosity": "+2"
       },
       "animation": "t-pose",
       "effect_trigger": "happy_glow",
       "vibration_trigger": "gentle_vibration"
-    }
+    },
+    {
+        "id": "ShutDown",
+        "speaker": "...",
+        "body_text": "",
+        "choices": [
+          {
+            "text": "",
+            "UnityEvent": "SystemReset",
+            "button": ""
+          }
+        ],
+  
+        "play_sound": "shut_down",
+        "modify_stat": {
+          "curiosity": "+2"
+        },
+        "animation": "t-pose",
+        "effect_trigger": "happy_glow",
+        "vibration_trigger": "gentle_vibration"
+      }
   ]
