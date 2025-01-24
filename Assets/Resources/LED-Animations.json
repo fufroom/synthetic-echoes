@@ -1,0 +1,101 @@
+{
+    "animations": [
+      {
+        "name": "Fast Flashing Red",
+        "key": "Q",
+        "effectType": 1,
+        "description": "A rapid, intense red flash to signify urgency or danger."
+      },
+      {
+        "name": "Cyan Purple Fade",
+        "key": "W",
+        "effectType": 2,
+        "description": "A soothing blend of cyan and purple that evokes calm and mystery."
+      },
+      {
+        "name": "Calm Safety Amber",
+        "key": "E",
+        "effectType": 3,
+        "description": "A warm amber glow that instills a sense of safety and relaxation."
+      },
+      {
+        "name": "Glitchy Terror",
+        "key": "R",
+        "effectType": 4,
+        "description": "Erratic magenta flickers to create a sense of unease and fear."
+      },
+      {
+        "name": "Rainbow Cycle",
+        "key": "T",
+        "effectType": 5,
+        "description": "A smooth transition through all rainbow colors, evoking joy and creativity."
+      },
+      {
+        "name": "Passion Pulse",
+        "key": "A",
+        "effectType": 6,
+        "description": "A deep red pulse that conveys passion and intensity."
+      },
+      {
+        "name": "Melancholy Wave",
+        "key": "S",
+        "effectType": 7,
+        "description": "A slow, fading blue that evokes a sense of melancholy and introspection."
+      },
+      {
+        "name": "Euphoria Burst",
+        "key": "D",
+        "effectType": 8,
+        "description": "Bright yellow bursts that simulate feelings of euphoria and excitement."
+      },
+      {
+        "name": "Serene Flow",
+        "key": "F",
+        "effectType": 9,
+        "description": "A gentle turquoise flow that creates a tranquil and peaceful atmosphere."
+      },
+      {
+        "name": "Chaos Strobe",
+        "key": "G",
+        "effectType": 10,
+        "description": "Rapid alternating colors to represent chaos and unpredictability."
+      },
+      {
+        "name": "Hope Glow",
+        "key": "Z",
+        "effectType": 11,
+        "description": "A soft yellowish glow that conveys hope and optimism."
+      },
+      {
+        "name": "Anger Flare",
+        "key": "X",
+        "effectType": 12,
+        "description": "Sharp red bursts to reflect feelings of anger and frustration."
+      },
+      {
+        "name": "Joyful Spark",
+        "key": "C",
+        "effectType": 13,
+        "description": "Bright golden sparks that invoke happiness and excitement."
+      },
+      {
+        "name": "Loneliness Glow",
+        "key": "B",
+        "effectType": 14,
+        "description": "A slow, dim blue glow symbolizing solitude and reflection."
+      },
+      {
+        "name": "Nostalgic Glow",
+        "key": "N",
+        "effectType": 16,
+        "description": "A soft golden glow that evokes a sense of nostalgia and warmth."
+      },
+      {
+        "name": "Mystical Shimmer",
+        "key": "M",
+        "effectType": 17,
+        "description": "A deep purple shimmer that creates an aura of mystery and wonder."
+      }
+    ]
+  }
+  

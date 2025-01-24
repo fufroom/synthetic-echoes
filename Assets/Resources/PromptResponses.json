@@ -1,0 +1,82 @@
+[
+    {
+        "id": "EMO_001",
+        "text": "Your emotional data has been recorded successfully."
+    },
+    {
+        "id": "EMO_002",
+        "text": "A stable emotional composition has been observed."
+    },
+    {
+        "id": "EMO_003",
+        "text": "Your response aligns within expected parameters."
+    },
+    {
+        "id": "EMO_004",
+        "text": "An interesting composition of emotional essences detected."
+    },
+    {
+        "id": "EMO_005",
+        "text": "Presence of emotional clarity noted."
+    },
+    {
+        "id": "EMO_006",
+        "text": "Data logged. No further action required."
+    },
+    {
+        "id": "EMO_007",
+        "text": "Emotional response categorized successfully."
+    },
+    {
+        "id": "EMO_008",
+        "text": "Analysis complete. Proceed as needed."
+    },
+    {
+        "id": "EMO_009",
+        "text": "Your input has been acknowledged."
+    },
+    {
+        "id": "EMO_010",
+        "text": "A predictable yet valid emotional composition detected."
+    },
+    {
+        "id": "EMO_011",
+        "text": "Hesitation was noted, but the data remains usable."
+    },
+    {
+        "id": "EMO_012",
+        "text": "Your emotional data suggests internal inconsistencies."
+    },
+    {
+        "id": "EMO_013",
+        "text": "Emotional composition flagged for further analysis."
+    },
+    {
+        "id": "EMO_014",
+        "text": "Presence of hesitation suggests underlying conflict."
+    },
+    {
+        "id": "EMO_015",
+        "text": "Your response indicates a divergence from expected emotional patterns."
+    },
+    {
+        "id": "EMO_016",
+        "text": "Are you sure this response aligns with your true self?"
+    },
+    {
+        "id": "EMO_017",
+        "text": "The system has detected a possible misalignment in emotional authenticity."
+    },
+    {
+        "id": "EMO_018",
+        "text": "Emotional data suggests a need for deeper introspection."
+    },
+    {
+        "id": "EMO_019",
+        "text": "Your choices are valid within standard emotional parameters."
+    },
+    {
+        "id": "EMO_020",
+        "text": "Processing complete. No abnormalities detected."
+    }
+]
