@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using System.Linq;  // Ensure this is included for LINQ operations
 
 public class MainQuestionsHandler : MonoBehaviour
 {
     public DialogueManager dialogueManager;
     private List<DialogueNode> generatedNodes = new List<DialogueNode>();
-    private int currentNodeIndex = 0;
 
     private string promptsPath = "Resources/MainPrompts.json";
     private string responsesPath = "Resources/PromptResponses.json";
@@ -33,16 +33,19 @@ public class MainQuestionsHandler : MonoBehaviour
             return;
         }
 
-        HashSet<int> selectedPromptIndices = new HashSet<int>();
+        List<int> selectedPromptIndices = new List<int>();
         while (selectedPromptIndices.Count < 5)
         {
             int randomIndex = Random.Range(0, prompts.Count);
-            selectedPromptIndices.Add(randomIndex);
+            if (!selectedPromptIndices.Contains(randomIndex))
+            {
+                selectedPromptIndices.Add(randomIndex);
+            }
         }
 
-        foreach (int index in selectedPromptIndices)
+        for (int i = 0; i < selectedPromptIndices.Count; i++)
         {
-            var prompt = prompts[index];
+            var prompt = prompts[selectedPromptIndices[i]];
             var response = responses[Random.Range(0, responses.Count)];
 
             var promptNode = new DialogueNode
@@ -57,13 +60,17 @@ public class MainQuestionsHandler : MonoBehaviour
                 text_to_speech = true
             };
 
+            string nextNode = (i < selectedPromptIndices.Count - 1) 
+                ? $"MainPrompts_{prompts[selectedPromptIndices[i + 1]].id}" 
+                : "Reflection";
+
             var responseNode = new DialogueNode
             {
                 id = $"PromptResponses_{response.id}",
                 body_text = response.text,
                 choices = new List<DialogueNode.Choice>
                 {
-                    new DialogueNode.Choice { text = "[1] Continue", button = "1", next_node = "" }
+                    new DialogueNode.Choice { text = "[1] Continue", button = "1", next_node = nextNode }
                 },
                 text_to_speech = true
             };
@@ -71,9 +78,6 @@ public class MainQuestionsHandler : MonoBehaviour
             generatedNodes.Add(promptNode);
             generatedNodes.Add(responseNode);
         }
-
-        // Link the last response to the "Reflection" node
-        generatedNodes[^1].choices[0].next_node = "Reflection";
     }
 
     private List<T> LoadJsonData<T>(string filePath)

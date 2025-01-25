@@ -277,6 +277,52 @@ Transform:
   - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &86944890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 86944891}
+  - component: {fileID: 86944892}
+  m_Layer: 0
+  m_Name: LEDAnimator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &86944891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86944890}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 119.43893, y: 20.247328, z: -8.292502}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &86944892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86944890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9923f4fcfdd8fc7b671b247d60db10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: /dev/ttyUSB0
+  baudRate: 9600
 --- !u!1 &93561524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,7 +2594,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1176469478}
-  - component: {fileID: 1176469477}
   - component: {fileID: 1176469479}
   m_Layer: 0
   m_Name: PalmScanner
@@ -2557,18 +2602,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1176469477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176469476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ece6152742f50f61acda49ae7b1f88f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1176469478
 Transform:
   m_ObjectHideFlags: 0
@@ -2597,6 +2630,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectionIcon: {fileID: 1459083660}
+  dialogueManager: {fileID: 491606398}
+  skipButtons:
+  - {fileID: 1568154656}
   portName: /dev/ttyUSB0
   baudRate: 9600
 --- !u!1 &1194140634
@@ -2680,6 +2716,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1458603609}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1194140637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2745,16 +2793,16 @@ MonoBehaviour:
           m_StringArgument: logo
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1176469479}
-        m_TargetAssemblyTypeName: PalmScanner, Assembly-CSharp
-        m_MethodName: TriggerLEDAnimation
-        m_Mode: 3
+      - m_Target: {fileID: 86944892}
+        m_TargetAssemblyTypeName: LEDAnimator, Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 15
           m_FloatArgument: 0
-          m_StringArgument: logo
+          m_StringArgument: Empathix Logo
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1218426132
@@ -3153,14 +3201,13 @@ GameObject:
   - component: {fileID: 1458603610}
   - component: {fileID: 1458603612}
   - component: {fileID: 1458603611}
-  - component: {fileID: 1458603613}
   m_Layer: 5
   m_Name: Welcome Wagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1458603610
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3222,18 +3269,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458603609}
   m_CullTransparentMesh: 1
---- !u!114 &1458603613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458603609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ee08cbf3f85dd6996c4048f07d733f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1459083657
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,18 +3534,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: simple_ui_confirm
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1176469479}
-        m_TargetAssemblyTypeName: PalmScanner, Assembly-CSharp
-        m_MethodName: TriggerLEDAnimation
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: simple_ui_confirm
           m_BoolArgument: 0
@@ -5168,3 +5191,4 @@ SceneRoots:
   - {fileID: 1176469478}
   - {fileID: 334137578}
   - {fileID: 869244540}
+  - {fileID: 86944891}

@@ -1,17 +1,24 @@
 using System.IO.Ports;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+using System.Runtime.InteropServices;
+using System.Collections;   // Added for IEnumerator
+using UnityEngine.UI;       // Added for Image
 
 public class PalmScanner : MonoBehaviour
 {
     public Image connectionIcon;
     private SerialPort serialPort;
-    public string portName = "/dev/ttyUSB0";
+    public string portName = "COM3";  // Change to match your port (e.g., "/dev/ttyUSB0" on Linux/Mac)
     public int baudRate = 9600;
-    private DialogueManager dialogueManager;
     private bool isConnected = false;
-    private bool scannerEnabled = true;
+
+    [DllImport("user32.dll")]
+    private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
+
+    private const byte VK_1 = 0x31;  // Virtual keycode for '1'
+    private const byte VK_2 = 0x32;  // Virtual keycode for '2'
+    private const uint KEYEVENTF_KEYDOWN = 0x0000;
+    private const uint KEYEVENTF_KEYUP = 0x0002;
 
     void Start()
     {
@@ -32,16 +39,15 @@ public class PalmScanner : MonoBehaviour
             serialPort.Open();
             serialPort.ReadTimeout = 100;
             isConnected = serialPort.IsOpen;
-            Debug.Log("Palm Scanner connected.");
-            UpdateIconColor();
-            StartCoroutine(FindDialogueManager());
+            Debug.Log("Palm Scanner connected successfully.");
         }
         catch (System.Exception ex)
         {
             isConnected = false;
-            Debug.Log($"Failed to open serial port: {ex.Message}");
-            UpdateIconColor();
+            serialPort = null;
+            Debug.LogError($"Failed to open serial port: {ex.Message}");
         }
+        UpdateIconColor();
     }
 
     private IEnumerator CheckConnectionStatus()
@@ -54,101 +60,48 @@ public class PalmScanner : MonoBehaviour
         }
     }
 
-    private IEnumerator FindDialogueManager()
-    {
-        while (dialogueManager == null)
-        {
-            dialogueManager = FindObjectOfType<DialogueManager>();
-            yield return new WaitForSeconds(1f);
-        }
-    }
-
     void Update()
     {
-        if (scannerEnabled && serialPort != null && serialPort.IsOpen)
+        if (serialPort == null || !isConnected)
         {
-            try
-            {
-                if (serialPort.BytesToRead > 0)
-                {
-                    string receivedData = serialPort.ReadLine().Trim();
-                    Debug.Log($"Palm Scanner received: {receivedData}");
-
-                    if (!string.IsNullOrEmpty(receivedData) && (receivedData == "1" || receivedData == "2"))
-                    {
-                        ProcessButtonPress(receivedData);
-                    }
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Debug.Log($"Error reading from serial port: {ex.Message}");
-            }
+            return;
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        try
         {
-            scannerEnabled = !scannerEnabled;
-            if (scannerEnabled)
+            if (serialPort.BytesToRead > 0)
             {
-                Debug.Log("Palm Scanner re-enabled.");
-                TryInitializeScanner();
-            }
-            else
-            {
-                Debug.Log("Palm Scanner disabled.");
-                if (serialPort != null && serialPort.IsOpen)
+                string receivedData = serialPort.ReadLine().Trim();
+                Debug.Log($"Palm Scanner received: {receivedData}");
+
+                if (receivedData == "1")
                 {
-                    serialPort.Close();
+                    SimulateKeyPress(VK_1);
+                }
+                else if (receivedData == "2")
+                {
+                    SimulateKeyPress(VK_2);
                 }
             }
         }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error reading from serial port: {ex.Message}");
+        }
     }
 
-    void ProcessButtonPress(string receivedData)
+    void SimulateKeyPress(byte keyCode)
     {
-        if (dialogueManager != null && dialogueManager.gameObject.activeInHierarchy)
-        {
-            if (dialogueManager.dialogueUI.choiceContainer.gameObject.activeSelf)
-            {
-                Debug.Log($"Sending choice selection to DialogueManager: {receivedData}");
-                dialogueManager.HandleChoiceSelection(receivedData);
-                return;
-            }
-        }
-
-        SkipButton[] skipButtons = FindObjectsOfType<SkipButton>(true);
-        foreach (var skipButton in skipButtons)
-        {
-            if (skipButton.gameObject.activeInHierarchy)
-            {
-                Debug.Log($"Palm scanner triggering SkipButton with input: {receivedData}");
-                skipButton.HandlePalmScannerInput(receivedData);
-                return;
-            }
-        }
-
-        Debug.LogWarning("No valid target found for palm scanner input.");
-    }
-
-    public void TriggerLEDAnimation(int effectType)
-    {
-        if (serialPort != null && serialPort.IsOpen && scannerEnabled)
-        {
-            serialPort.WriteLine(effectType.ToString());
-            Debug.Log($"Sent LED animation command: {effectType}");
-        }
-        else
-        {
-            Debug.Log("Cannot send LED animation. Serial port is not connected.");
-        }
+        Debug.Log($"Simulating key press: {keyCode}");
+        keybd_event(keyCode, 0, KEYEVENTF_KEYDOWN, 0);
+        keybd_event(keyCode, 0, KEYEVENTF_KEYUP, 0);
     }
 
     void UpdateIconColor()
     {
         if (connectionIcon != null)
         {
-            connectionIcon.color = isConnected ? Color.white : Color.black;
+            connectionIcon.color = isConnected ? Color.green : Color.red;
         }
     }
 

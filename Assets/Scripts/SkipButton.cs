@@ -8,22 +8,17 @@ public class SkipButton : MonoBehaviour
     void Awake()
     {
         button = GetComponent<Button>();
+        if (button == null)
+        {
+            Debug.LogError($"SkipButton on {gameObject.name} is missing a Button component.");
+        }
     }
 
-    void Update()
+    void Start()
     {
-        if (button != null && button.interactable)
+        if (button != null)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Debug.Log("Keyboard input detected: 1");
-                TriggerButton();
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                Debug.Log("Keyboard input detected: 2");
-                TriggerButton();
-            }
+            button.onClick.AddListener(() => Debug.Log($"Button {gameObject.name} clicked."));
         }
     }
 
@@ -31,17 +26,18 @@ public class SkipButton : MonoBehaviour
     {
         if (button != null && button.interactable)
         {
-            Debug.Log($"Button {button.name} triggered.");
+            Debug.Log($"Button {gameObject.name} triggered via script.");
             button.onClick.Invoke();
+        }
+        else
+        {
+            Debug.LogWarning($"Button {gameObject.name} is not interactable.");
         }
     }
 
     public void HandlePalmScannerInput(string receivedData)
     {
-        if (receivedData == "1" || receivedData == "2")
-        {
-            Debug.Log($"Palm scanner input received: {receivedData}");
-            TriggerButton();
-        }
+        Debug.Log($"Palm scanner input received: {receivedData} for button {gameObject.name}");
+        TriggerButton();
     }
 }

@@ -5,220 +5,117 @@
 #define BUTTON1_PIN 3  // D3 sends "1"
 #define BUTTON2_PIN 2  // D2 sends "2"
 
+bool isAnimationRunning = false;
+
+// Helper function to parse incoming serial data
+void processSerialCommand(String command);
+
+// Set up serial communication and LED pins
 void setup() {
   Serial.begin(9600);
   pinMode(RED_PIN, OUTPUT);
   pinMode(GREEN_PIN, OUTPUT);
   pinMode(BLUE_PIN, OUTPUT);
-
+  
   pinMode(BUTTON1_PIN, INPUT_PULLUP);
   pinMode(BUTTON2_PIN, INPUT_PULLUP);
-
-  turnOffLED();
-  tealFade();  // Start with teal fade effect
+  
+  setDefaultLED();  // Set default amber color at low brightness
 }
 
 void loop() {
-  checkButtonPress(BUTTON1_PIN, '1');
-  checkButtonPress(BUTTON2_PIN, '2');
+  checkButtonPress();
 
-  if (Serial.available() > 0) {
-    int effectType = Serial.parseInt();
-    executeAnimation(effectType);
+  if (Serial.available()) {
+    String receivedCommand = Serial.readStringUntil('\n');  // Read entire command
+    receivedCommand.trim();
+    if (receivedCommand.length() > 0) {
+      processSerialCommand(receivedCommand);
+    }
   }
 }
 
-// Function to execute animations based on effectType
-void executeAnimation(int effectType) {
-  switch (effectType) {
-    case 1: fastFlashingRed(); break;  // Fast Flashing Red (Red)
-    case 2: cyanPurpleFade(); break;   // Cyan Purple Fade (Cyan, Purple)
-    case 3: calmSafetyAmber(); break;  // Calm Safety Amber (Amber/Orange)
-    case 4: glitchyTerror(); break;    // Glitchy Terror (Random Colors)
-    case 5: rainbowCycle(); break;     // Rainbow Cycle (Multicolor)
-    case 6: passionPulse(); break;     // Passion Pulse (Red Shades)
-    case 7: melancholyWave(); break;   // Melancholy Wave (Blue, Dark Blue)
-    case 8: euphoriaBurst(); break;    // Euphoria Burst (Bright Yellow)
-    case 9: sereneFlow(); break;       // Serene Flow (Teal, Green)
-    case 10: chaosStrobe(); break;     // Chaos Strobe (Random Strobing Colors)
-    case 11: hopeGlow(); break;        // Hope Glow (Soft Yellow)
-    case 12: angerFlare(); break;      // Anger Flare (Intense Red)
-    case 13: joyfulSpark(); break;     // Joyful Spark (Warm Yellow, Orange)
-    case 14: lonelinessGlow(); break;  // Loneliness Glow (Dark Blue, Purple)
-    case 15: tealFade(); break;        // Teal Fade (New Effect)
-    case 16: nostalgicGlow(); break;   // Nostalgic Glow (Sepia Tones)
-    case 17: mysticalShimmer(); break; // Mystical Shimmer (Purple, Blue)
-    default: turnOffLED(); break;      // Turn off for unknown commands
-  }
-}
-
-// Button press handling function (consume pressed)
-void checkButtonPress(int pin, char message) {
+// Button handling for Unity messages
+void checkButtonPress() {
   static bool button1Pressed = false;
   static bool button2Pressed = false;
 
-  if (pin == BUTTON1_PIN) {
-    if (digitalRead(pin) == LOW && !button1Pressed) {
-      Serial.println(message);
-      button1Pressed = true;
-    }
-    if (digitalRead(pin) == HIGH) {
-      button1Pressed = false;
-    }
+  if (digitalRead(BUTTON1_PIN) == LOW && !button1Pressed) {
+    Serial.println("1");
+    button1Pressed = true;
+    delay(50);
+  }
+  if (digitalRead(BUTTON1_PIN) == HIGH) {
+    button1Pressed = false;
   }
 
-  if (pin == BUTTON2_PIN) {
-    if (digitalRead(pin) == LOW && !button2Pressed) {
-      Serial.println(message);
-      button2Pressed = true;
-    }
-    if (digitalRead(pin) == HIGH) {
-      button2Pressed = false;
-    }
+  if (digitalRead(BUTTON2_PIN) == LOW && !button2Pressed) {
+    Serial.println("2");
+    button2Pressed = true;
+    delay(50);
+  }
+  if (digitalRead(BUTTON2_PIN) == HIGH) {
+    button2Pressed = false;
   }
 }
 
-// Fast Flashing Red
-void fastFlashingRed() {
-  for (int i = 0; i < 10; i++) {
-    setColor(255, 0, 0);
-    delay(100);
-    turnOffLED();
-    delay(100);
+// Set default LED color
+void setDefaultLED() {
+  setColorRGBA(255, 212, 42, 50);  // Low alpha amber color
+}
+
+// Function to parse and process Unity's serial commands
+void processSerialCommand(String command) {
+  char commandBuffer[50];
+  command.toCharArray(commandBuffer, 50);
+
+  char* animationType = strtok(commandBuffer, ",");
+  int r1 = atoi(strtok(NULL, ","));
+  int g1 = atoi(strtok(NULL, ","));
+  int b1 = atoi(strtok(NULL, ","));
+  int a1 = atoi(strtok(NULL, ","));
+  int r2 = atoi(strtok(NULL, ","));
+  int g2 = atoi(strtok(NULL, ","));
+  int b2 = atoi(strtok(NULL, ","));
+  int a2 = atoi(strtok(NULL, ","));
+  int duration = atoi(strtok(NULL, ","));
+
+  if (strcmp(animationType, "fade") == 0) {
+    fadeBetweenColors(r1, g1, b1, a1, r2, g2, b2, a2, duration);
+  } 
+  else if (strcmp(animationType, "flicker") == 0) {
+    flickerColor(r1, g1, b1, a1, duration);
   }
 }
 
-// Cyan Purple Fade
-void cyanPurpleFade() {
-  fadeBetweenColors(0, 255, 255, 128, 0, 128, 3000);
-}
-
-// Calm Safety Amber
-void calmSafetyAmber() {
-  setColor(255, 165, 0);
-  delay(2500);
-  turnOffLED();
-}
-
-// Glitchy Terror
-void glitchyTerror() {
-  for (int i = 0; i < 20; i++) {
-    setColor(random(0, 255), 0, random(0, 255));
-    delay(100);
-  }
-  turnOffLED();
-}
-
-// Rainbow Cycle
-void rainbowCycle() {
-  int colors[][3] = {{255,0,0}, {255,127,0}, {255,255,0}, {0,255,0}, {0,0,255}, {75,0,130}, {148,0,211}};
-  for (int i = 0; i < 7; i++) {
-    setColor(colors[i][0], colors[i][1], colors[i][2]);
-    delay(500);
-  }
-}
-
-// Passion Pulse
-void passionPulse() {
-  pulseColor(255, 50, 50, 2000);
-}
-
-// Melancholy Wave
-void melancholyWave() {
-  fadeBetweenColors(50, 50, 150, 0, 0, 100, 3000);
-}
-
-// Euphoria Burst
-void euphoriaBurst() {
-  for (int i = 0; i < 5; i++) {
-    setColor(255, 255, 50);
-    delay(300);
-    turnOffLED();
-    delay(300);
-  }
-}
-
-// Serene Flow
-void sereneFlow() {
-  pulseColor(50, 255, 200, 3500);
-}
-
-// Chaos Strobe
-void chaosStrobe() {
-  for (int i = 15; i > 0; i--) {
-    setColor(random(255), random(255), random(255));
-    delay(100);
-  }
-  turnOffLED();
-}
-
-// Hope Glow
-void hopeGlow() {
-  pulseColor(255, 255, 100, 3000);
-}
-
-// Anger Flare
-void angerFlare() {
-  for (int i = 0; i < 5; i++) {
-    setColor(255, 0, 50);
-    delay(100);
-    turnOffLED();
-    delay(100);
-  }
-}
-
-// Joyful Spark
-void joyfulSpark() {
-  pulseColor(255, 200, 50, 2000);
-}
-
-// Loneliness Glow
-void lonelinessGlow() {
-  fadeBetweenColors(100, 100, 200, 0, 0, 50, 4000);
-}
-
-// Nostalgic Glow
-void nostalgicGlow() {
-  pulseColor(200, 150, 50, 3500);
-}
-
-// Mystical Shimmer
-void mysticalShimmer() {
-  fadeBetweenColors(150, 0, 255, 75, 0, 130, 3000);
-}
-
-// Teal Fade (New Effect)
-void tealFade() {
-  fadeBetweenColors(0, 128, 128, 0, 255, 255, 4000);
-}
-
-// Helper Functions
-
-void setColor(int r, int g, int b) {
-  analogWrite(RED_PIN, r);
-  analogWrite(GREEN_PIN, g);
-  analogWrite(BLUE_PIN, b);
-}
-
-void turnOffLED() {
-  setColor(0, 0, 0);
-}
-
-void pulseColor(int r, int g, int b, int duration) {
+// Function to fade between two colors
+void fadeBetweenColors(int r1, int g1, int b1, int a1, int r2, int g2, int b2, int a2, int duration) {
   for (int i = 0; i <= 255; i += 5) {
-    setColor(r * i / 255, g * i / 255, b * i / 255);
+    setColorRGBA(
+      map(i, 0, 255, r1, r2),
+      map(i, 0, 255, g1, g2),
+      map(i, 0, 255, b1, b2),
+      map(i, 0, 255, a1, a2)
+    );
     delay(duration / 50);
   }
-  for (int i = 255; i >= 0; i -= 5) {
-    setColor(r * i / 255, g * i / 255, b * i / 255);
-    delay(duration / 50);
-  }
+  setDefaultLED();
 }
 
-void fadeBetweenColors(int r1, int g1, int b1, int r2, int g2, int b2, int duration) {
-  for (int i = 0; i <= 255; i += 5) {
-    setColor(map(i, 0, 255, r1, r2), map(i, 0, 255, g1, g2), map(i, 0, 255, b1, b2));
-    delay(duration / 50);
+// Function to flicker a color on and off
+void flickerColor(int r, int g, int b, int a, int duration) {
+  for (int i = 0; i < 5; i++) {
+    setColorRGBA(r, g, b, a);
+    delay(duration / 10);
+    setColorRGBA(0, 0, 0, 0);
+    delay(duration / 10);
   }
-  turnOffLED();
+  setDefaultLED();
+}
+
+// Helper function to set LED color with alpha
+void setColorRGBA(int r, int g, int b, int a) {
+  analogWrite(RED_PIN, (r * a) / 255);
+  analogWrite(GREEN_PIN, (g * a) / 255);
+  analogWrite(BLUE_PIN, (b * a) / 255);
 }

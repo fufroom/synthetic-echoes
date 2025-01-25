@@ -190,7 +190,7 @@
     "vibration_on_button_press": "medium"
   },
   {
-    "id": "Logout",
+    "id": "LogOut",
     "speaker": "Empathix System Message",
     "body_text": "You are now being logged out...",
     "choices": [],
