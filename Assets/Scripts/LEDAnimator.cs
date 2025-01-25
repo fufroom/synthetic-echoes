@@ -26,7 +26,7 @@ public class LEDAnimator : MonoBehaviour
             serialPort.Open();
             serialPort.ReadTimeout = 100;
             isConnected = serialPort.IsOpen;
-            Debug.Log("LED Animator connected to serial port.");
+          // Debug.Log("LED Animator connected to serial port.");
         }
         catch (System.Exception ex)
         {

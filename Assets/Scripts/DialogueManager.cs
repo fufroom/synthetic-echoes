@@ -24,30 +24,31 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-  public void StartNode(string nodeId)
-{
-    if (string.IsNullOrEmpty(nodeId))
+    public void StartNode(string nodeId)
     {
-        Debug.LogError("Attempted to start a node with an empty ID.");
-        return;
+        if (string.IsNullOrEmpty(nodeId))
+        {
+            Debug.LogError("Attempted to start a node with an empty ID.");
+            return;
+        }
+
+        if (nodeId == "MainQuestions")
+        {
+            mainQuestionsHandler?.StartMainQuestionsSequence();
+            return;
+        }
+
+        if (dialogueNodes.ContainsKey(nodeId))
+        {
+            currentNode = dialogueNodes[nodeId];
+            dialogueUI.RefreshView(currentNode, this);
+        }
+        else
+        {
+            Debug.LogError($"Node with ID '{nodeId}' not found.");
+        }
     }
 
-    if (nodeId == "MainQuestions")
-    {
-        mainQuestionsHandler?.StartMainQuestionsSequence();
-        return;
-    }
-
-    if (dialogueNodes.ContainsKey(nodeId))
-    {
-        currentNode = dialogueNodes[nodeId];
-        dialogueUI.RefreshView(currentNode, this);
-    }
-    else
-    {
-        Debug.LogError($"Node with ID '{nodeId}' not found.");
-    }
-}
     public void InjectNodes(List<DialogueNode> nodes)
     {
         foreach (var node in nodes)
@@ -58,14 +59,33 @@ public class DialogueManager : MonoBehaviour
 
     public void HandleChoiceSelection(string button)
     {
-        foreach (var choice in currentNode.choices)
+        if (dialogueUI != null && dialogueUI.choiceContainer.gameObject.activeSelf)
         {
-            if (choice.button == button)
+            foreach (var choice in currentNode.choices)
             {
-                StartNode(choice.next_node);
-                return;
+                if (choice.button == button)
+                {
+                    StartNode(choice.next_node);
+                    return;
+                }
             }
+            Debug.LogWarning($"No choice found for button {button}");
         }
-        Debug.LogWarning($"No choice found for button {button}");
+        else if (currentNode != null && currentNode.id.StartsWith("MainPrompts"))
+        {
+            foreach (var choice in currentNode.choices)
+            {
+                if (choice.button == button)
+                {
+                    StartNode(choice.next_node);
+                    return;
+                }
+            }
+            Debug.LogWarning($"No choice found for button {button} in MainQuestionsHandler");
+        }
+        else
+        {
+            Debug.Log("Choice selection attempted while buttons are not visible.");
+        }
     }
 }

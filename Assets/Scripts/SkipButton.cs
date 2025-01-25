@@ -3,41 +3,48 @@ using UnityEngine.UI;
 
 public class SkipButton : MonoBehaviour
 {
-    private Button button;
+    private Button skipButton;
+    private bool previousButton1State = false;
+    private bool previousButton2State = false;
 
     void Awake()
     {
-        button = GetComponent<Button>();
-        if (button == null)
+        skipButton = GetComponent<Button>();
+        if (skipButton == null)
         {
-            Debug.LogError($"SkipButton on {gameObject.name} is missing a Button component.");
+            Debug.LogError("SkipButton script requires a Button component on the same GameObject.");
         }
     }
 
-    void Start()
+    void Update()
     {
-        if (button != null)
+        if (PalmScanner.button1Pressed && !previousButton1State)
         {
-            button.onClick.AddListener(() => Debug.Log($"Button {gameObject.name} clicked."));
+            previousButton1State = true;
+            PressButton();
+        }
+        else if (!PalmScanner.button1Pressed)
+        {
+            previousButton1State = false;
+        }
+
+        if (PalmScanner.button2Pressed && !previousButton2State)
+        {
+            previousButton2State = true;
+            PressButton();
+        }
+        else if (!PalmScanner.button2Pressed)
+        {
+            previousButton2State = false;
         }
     }
 
-    public void TriggerButton()
+    void PressButton()
     {
-        if (button != null && button.interactable)
+        if (skipButton != null)
         {
-            Debug.Log($"Button {gameObject.name} triggered via script.");
-            button.onClick.Invoke();
+            skipButton.onClick.Invoke();
+            //Debug.Log("SkipButton pressed via keyboard input.");
         }
-        else
-        {
-            Debug.LogWarning($"Button {gameObject.name} is not interactable.");
-        }
-    }
-
-    public void HandlePalmScannerInput(string receivedData)
-    {
-        Debug.Log($"Palm scanner input received: {receivedData} for button {gameObject.name}");
-        TriggerButton();
     }
 }
