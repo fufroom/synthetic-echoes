@@ -21,8 +21,10 @@ public string GetBodyText()
     {
         if (textList.Count > 0)
         {
-            var randText = textList[Random.Range(0, textList.Count)].ToString();
-            Debug.Log("Random body text (List<object>): " + randText);
+            int randomIndex = Random.Range(0, textList.Count);
+            var randText = textList[randomIndex].ToString();
+            id += $"_{randomIndex}";
+            Debug.Log($"Random body text (List<object>): {randText}, New ID: {id}");
             return randText;
         }
     }
@@ -30,8 +32,10 @@ public string GetBodyText()
     {
         if (textArray.Length > 0)
         {
-            var randText = textArray[Random.Range(0, textArray.Length)].ToString();
-            Debug.Log("Random body text (object[]): " + randText);
+            int randomIndex = Random.Range(0, textArray.Length);
+            var randText = textArray[randomIndex].ToString();
+            id += $"_{randomIndex}";
+            Debug.Log($"Random body text (object[]): {randText}, New ID: {id}");
             return randText;
         }
     }
@@ -39,8 +43,10 @@ public string GetBodyText()
     {
         if (jsonArray.Count > 0)
         {
-            var randText = jsonArray[Random.Range(0, jsonArray.Count)].ToString();
-            Debug.Log("Random body text (JArray): " + randText);
+            int randomIndex = Random.Range(0, jsonArray.Count);
+            var randText = jsonArray[randomIndex].ToString();
+            id += $"_{randomIndex}";
+            Debug.Log($"Random body text (JArray): {randText}, New ID: {id}");
             return randText;
         }
     }
@@ -48,6 +54,7 @@ public string GetBodyText()
     Debug.LogError("Something went wrong with body_text deserialization: " + body_text);
     return "Something went wrong here...";
 }
+
 
 
     [System.Serializable]
