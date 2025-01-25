@@ -2,7 +2,10 @@
   {
     "id": "Start",
     "speaker": "Empathix Assistant",
-    "body_text": "Welcome! I am so glad you are here. Let us take a moment to center ourselves before we begin. Take a big deep breath.",
+    "body_text": [
+      "Welcome! I am so glad you are here. Let us take a moment to center ourselves before we begin. Take a big deep breath.",
+      "Hello there! Good to see a new patient. Let us take a moment to center ourselves before we begin. Breathe in and breathe out."
+    ],
     "choices": [
       {
         "text": "Continue",

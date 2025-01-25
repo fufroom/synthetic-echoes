@@ -11,30 +11,44 @@ public class DialogueNode
     public bool text_to_speech;
     public string play_sound;
     public string animation;
-
-   public string GetBodyText()
+public string GetBodyText()
 {
-    if (body_text == null)
-    {
-        Debug.LogWarning($"DialogueNode {id} has no body_text field.");
-        return "Missing text";
-    }
-
     if (body_text is string singleText)
     {
         return singleText;
     }
-    else if (body_text is List<object> textList && textList.Count > 0)
+    else if (body_text is List<object> textList)
     {
-        return textList[Random.Range(0, textList.Count)].ToString();
+        if (textList.Count > 0)
+        {
+            var randText = textList[Random.Range(0, textList.Count)].ToString();
+            Debug.Log("Random body text (List<object>): " + randText);
+            return randText;
+        }
     }
-    else if (body_text is List<string> stringList && stringList.Count > 0)
+    else if (body_text is object[] textArray)
     {
-        return stringList[Random.Range(0, stringList.Count)];
+        if (textArray.Length > 0)
+        {
+            var randText = textArray[Random.Range(0, textArray.Length)].ToString();
+            Debug.Log("Random body text (object[]): " + randText);
+            return randText;
+        }
     }
-    Debug.LogError($"Unexpected body_text format in node {id}");
-    return "Invalid format";
+    else if (body_text is Newtonsoft.Json.Linq.JArray jsonArray)
+    {
+        if (jsonArray.Count > 0)
+        {
+            var randText = jsonArray[Random.Range(0, jsonArray.Count)].ToString();
+            Debug.Log("Random body text (JArray): " + randText);
+            return randText;
+        }
+    }
+
+    Debug.LogError("Something went wrong with body_text deserialization: " + body_text);
+    return "Something went wrong here...";
 }
+
 
     [System.Serializable]
     public class Choice
